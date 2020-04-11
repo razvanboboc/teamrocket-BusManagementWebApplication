@@ -1,1 +1,1 @@
-# razvanboboc-teamrocket-BusManagementWebApplication
+# teamrocket-BusManagementWebApplication
