@@ -7,7 +7,7 @@ using System.Text;
 
 namespace BusCompanyManagement.DataAccess
 {
-    /*public class BusRepository : BaseRepository<Bus>, IBusRepository
+    public class BusRepository : BaseRepository<Bus>, IBusRepository
     {
         public BusRepository(BusCompanyManagementDbContext dbContext) : base(dbContext)
         {
@@ -16,24 +16,10 @@ namespace BusCompanyManagement.DataAccess
         
         public Bus GetBusByTripId(Guid tripId)
         {
-            
-            return dbContext.Buses
-                            .Where(bus => bus.Trips
-                                              .Where(trip => trip.TripId == tripId).SingleOrDefault() == tripId) 
-                            .SingleOrDefault();
-
-            Bus bus = null;
-
-            var selectedTrip = dbContext.Trips
-                                         .Where(trip => trip.TripId == tripId)
-                                         .SingleOrDefault();
-
-            return Bus.selectedTrip
-                            .Where(bus => selectedTrip.TripId == tripId)
-                            .SingleOrDefault();
-                            
+            var bus = dbContext.Buses.Where(b => b.Trips.Any(trip => trip.TripId == tripId)).SingleOrDefault();
+            return bus;
         }
         
     }
-*/
+
 }

@@ -5,13 +5,13 @@ using System.Text;
 
 namespace BusCompanyManagement.ApplicationLogic.Abstractions
 {
-    interface IUserRepository : IRepository<User>
+    public interface IUserRepository : IRepository<User>
     {
-        User GetUserByPersonalTripId(Guid PersonalTripId);
+        User GetUserByPersonalTripId(Guid personalTripId);
 
-        User GetUserByEmailAdress(String EmailAdress);
+        User GetUserByEmailAdress(String emailAdress);
 
-        User GetUserByFirstAndLastName(String FirstName, String LastName);
+        User GetUserByFirstAndLastName(String firstName, String lastName);
 
     }
 }
