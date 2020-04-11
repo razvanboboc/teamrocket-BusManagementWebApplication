@@ -7,6 +7,13 @@ namespace BusCompanyManagement.DataAccess
 {
     public class BaseRepository<T> : IRepository<T>
     {
+        protected BusCompanyManagementDbContext dbContext;
+
+        public BaseRepository(BusCompanyManagementDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
         public T Add(T itemToAdd)
         {
             throw new NotImplementedException();
