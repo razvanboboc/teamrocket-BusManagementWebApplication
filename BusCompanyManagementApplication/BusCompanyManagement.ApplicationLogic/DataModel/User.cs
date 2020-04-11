@@ -4,6 +4,7 @@ using System.Text;
 
 namespace BusCompanyManagement.ApplicationLogic.DataModel
 {
+    //lascau
     public class User
     {
         public Guid UserId { get; set; }
