@@ -10,7 +10,7 @@ namespace BusCompanyManagement.ApplicationLogic.DataModel
 
         public string EmailAdress { get; set; }
         public string Password { get; set; }
-
+        //hatz
         public string DateOfBirth { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
