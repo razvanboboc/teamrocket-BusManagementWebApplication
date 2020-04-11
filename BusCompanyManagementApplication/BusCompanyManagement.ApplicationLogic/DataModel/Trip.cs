@@ -13,7 +13,9 @@ namespace BusCompanyManagement.ApplicationLogic.DataModel
         public DateTime DestinationTime { get; set; }
 
         public DateTime ArrivalTime { get; set; }
-       
+        //one-to-one PersonaTrip-Trip (ref property + FK)
+        public PersonalTrip PersonalTrip { get; set; }
+        public int PersonalTripId { get; set; }
         //one-to-many Trip-Bus
         public Bus Bus { get; set; }
         //many-to-many Trip-Stop

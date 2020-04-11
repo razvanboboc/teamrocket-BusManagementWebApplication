@@ -12,7 +12,8 @@ namespace BusCompanyManagement.ApplicationLogic.DataModel
         public int TicketPrice { get; set; }
         public int SeatNumber { get; set; }
         public int Rating { get; set; }
-       
+        //one-to-many User-PersonalTrip 
+        public User User { get; set; }
         //one-to-one PersonaTrip-Trip
         public Trip Trip { get; set; }
     }
