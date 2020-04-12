@@ -7,7 +7,7 @@ namespace BusCompanyManagement.ApplicationLogic.DataModel
     public class User
     {
         public Guid UserId { get; set; }
-        //test Paul
+        
         public string EmailAdress { get; set; }
         public string Password { get; set; }
 
