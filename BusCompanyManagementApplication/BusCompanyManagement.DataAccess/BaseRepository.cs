@@ -1,37 +1,45 @@
 ﻿using BusCompanyManagement.ApplicationLogic.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BusCompanyManagement.DataAccess
 {
-    public class BaseRepository<T> : IRepository<T>
+    public class BaseRepository<T> : IRepository<T> where T : class, new()
     {
         protected BusCompanyManagementDbContext dbContext;
 
-        public BaseRepository(BusCompanyManagementDbContext dbContext)
+        public BaseRepository(BusCompanyManagementDbContext dbContext) 
         {
             this.dbContext = dbContext;
         }
 
         public T Add(T itemToAdd)
         {
-            throw new NotImplementedException();
+            var entity = dbContext.Add<T>(itemToAdd);
+            dbContext.SaveChanges();
+            return entity.Entity;
         }
 
         public bool Delete(T itemToDelete)
         {
-            throw new NotImplementedException();
+            dbContext.Remove<T>(itemToDelete);
+            dbContext.SaveChanges();
+            return true;
         }
 
         public IEnumerable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return dbContext.Set<T>()
+                            .AsEnumerable();
         }
 
         public T Update(T itemToUpdate)
         {
-            throw new NotImplementedException();
+            var entity = dbContext.Update<T>(itemToUpdate);
+            dbContext.SaveChanges();
+            return entity.Entity;
         }
     }
 }

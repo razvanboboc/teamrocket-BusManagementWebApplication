@@ -9,9 +9,9 @@ namespace BusCompanyManagement.ApplicationLogic.Abstractions
     {
         User GetUserByPersonalTripId(Guid personalTripId);
 
-        User GetUserByEmailAdress(String emailAdress);
+        User GetUserByEmailAdress(String emailAdress); //remove
 
-        User GetUserByFirstAndLastName(String firstName, String lastName);
-
+        User GetUserByFirstAndLastName(String firstName, String lastName); //remove
+         
     }
 }
