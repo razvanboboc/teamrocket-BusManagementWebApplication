@@ -7,7 +7,7 @@ namespace BusCompanyManagement.ApplicationLogic.DataModel
     public class Trip
     {
         public Guid TripId { get; set; }
-        public string Destination { get; set; }
+        public string Destination { get; set; } 
         public string Arrival { get; set; }
 
         public DateTime DestinationTime { get; set; }
