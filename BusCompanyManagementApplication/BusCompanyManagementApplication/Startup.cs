@@ -48,6 +48,7 @@ namespace BusCompanyManagementApplication
             services.AddScoped<IBusRepository, BusRepository>();
             services.AddScoped<HistoryTripsService>();
             services.AddScoped<BusesService>();
+            services.AddScoped<TripsService>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();

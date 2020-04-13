@@ -1,0 +1,48 @@
+﻿@model BusCompanyManagementApplication.Models.TripModel.TripViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Bus</h1>
+
+<br/>
+
+<table class="table" BORDERCOLOR=#c99797>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("ArrivalTime")
+            </th>
+            <th>
+                @Html.DisplayName("DestinationTime")
+            </th>
+            <th>
+                @Html.DisplayName("Arrival")
+            </th>
+            <th>
+                @Html.DisplayName("Destination")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Trips)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.ArrivalTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.DestinationTime)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => item.Arrival)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Destination)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

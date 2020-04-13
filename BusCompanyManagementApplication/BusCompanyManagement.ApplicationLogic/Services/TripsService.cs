@@ -10,6 +10,40 @@ namespace BusCompanyManagement.ApplicationLogic.Services
 {
     public class TripsService
     {
-        
+        private IBusRepository busRepository;
+        private ITripRepository tripRepository;
+
+        public TripsService(IBusRepository busRepository, ITripRepository tripRepository)
+        {
+            this.busRepository = busRepository;
+            this.tripRepository = tripRepository;
+        }
+
+        public Trip GetTripByArrival(string arrival)
+        { 
+            if (arrival == null)
+            {
+                throw new Exception("Null string");
+            }
+
+            return tripRepository.GetTripByArrival(arrival);
+          
+        }
+
+        public Trip GetTripByDestination(string destination)
+        {
+            if (destination == null)
+            {
+                throw new Exception("Null string");
+            }
+
+            return tripRepository.GetTripByDestination(destination);
+        }
+
+        public IEnumerable<Trip> GetTrips()
+        {
+            return tripRepository.GetTrips();
+        }
+
     }
 }
