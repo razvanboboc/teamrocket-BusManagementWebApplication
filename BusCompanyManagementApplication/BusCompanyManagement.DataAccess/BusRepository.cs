@@ -19,7 +19,12 @@ namespace BusCompanyManagement.DataAccess
             var bus = dbContext.Buses.Where(b => b.Trips.Any(trip => trip.TripId == tripId)).SingleOrDefault();
             return bus;
         }
-        
+
+        public IEnumerable<Bus> GetBuses()
+        {
+            var buses = dbContext.Buses.AsEnumerable();
+            return buses;
+        }
     }
 
 }
