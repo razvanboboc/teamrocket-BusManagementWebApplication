@@ -1,0 +1,49 @@
+﻿@model BusCompanyManagementApplication.Models.HistoryTrip.HistoryTripsViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>History trips</h1>
+<br />
+<style>
+    tr:nth-child(even) {
+        background-color: #c89797;
+    }
+</style>
+<table class="table" BORDERCOLOR=#c89797>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Status")
+            </th>
+            <th>
+                @Html.DisplayName("Seat number")
+            </th>
+            <th>
+                @Html.DisplayName("Ticket Price")
+            </th>
+            <th>
+                @Html.DisplayName("Rating")
+            </th>  
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.historyTrip)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeatNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>            
+        </tr>
+        }
+    </tbody>
+</table>

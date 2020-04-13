@@ -7,14 +7,14 @@ using System.Text;
 
 namespace BusCompanyManagement.DataAccess
 {
-    class UserRepository: BaseRepository<User>, IUserRepository
+    public class UserRepository: BaseRepository<User>, IUserRepository
     {
         public UserRepository(BusCompanyManagementDbContext dbContext) : base(dbContext)
         {
 
         }
 
-        public User GetUserByPersonalTripId(Guid personalTripId)
+        public User GetUserBy(Guid personalTripId)
         {
             var user = dbContext.Users.Where(u => u.PersonalTrip.Any(p => p.PersonalTripId == personalTripId)).SingleOrDefault();
             return user;

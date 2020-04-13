@@ -4,14 +4,16 @@ using BusCompanyManagement.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BusCompanyManagement.DataAccess.Migrations
 {
     [DbContext(typeof(BusCompanyManagementDbContext))]
-    partial class BusCompanyManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200413062035_ModifyTrip")]
+    partial class ModifyTrip
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
