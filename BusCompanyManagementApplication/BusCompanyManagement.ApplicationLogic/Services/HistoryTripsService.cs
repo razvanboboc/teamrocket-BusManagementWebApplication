@@ -29,7 +29,7 @@ namespace BusCompanyManagement.ApplicationLogic.Services
             {
                 throw new Exception("Invalid Guid Format");
             }
-            // problem         
+                   
             return historyTripRepository.GetPersonalTripsByUserId(userIdGuid);                                       
         }
 
@@ -94,5 +94,18 @@ namespace BusCompanyManagement.ApplicationLogic.Services
             }
             historyTripRepository.Add(new PersonalTrip() { PersonalTripId = Guid.NewGuid(), Status = status, TicketPrice = ticketPrice, SeatNumber = seatNumber, Rating = rating});
         }
+
+        public void RemoveHistoryTrip(string userId)
+        {
+            Guid userIdGuid = Guid.Empty;
+            if (!Guid.TryParse(userId, out userIdGuid))
+            {
+                throw new Exception("Invalid Guid Format");
+            }
+            var historyTrip = historyTripRepository.GetHistoryTripByUserId(userIdGuid);
+            historyTripRepository.Delete(historyTrip);
+        }
+
+
     }
 }

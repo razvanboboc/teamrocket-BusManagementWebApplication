@@ -23,15 +23,13 @@ namespace BusCompanyManagementApplication.Controllers
             this.userManager = userManager;
             this.historyTripsService = historyTripsService;
         }
-       //problem
+      
         public ActionResult Index()
         {
             try
             {
-                var userId = userManager.GetUserId(User);
-                //var personalTripId = historyTripsService.GetPersonalTripByUserId(userId);//            
-                var historyTrip = historyTripsService.GetTripHistoryByUserId(userId);
-                //var trip = historyTripsService.GetTripByPersonalTripId(personalTripId.ToString());//
+                var userId = userManager.GetUserId(User);                    
+                var historyTrip = historyTripsService.GetTripHistoryByUserId(userId);               
                 
                 return View(new HistoryTripsViewModel { historyTrip = historyTrip});
             }
@@ -55,7 +53,7 @@ namespace BusCompanyManagementApplication.Controllers
 
                 return BadRequest();
             }
-            // ???
+            
             var userId = userManager.GetUserId(User);
             var personalTrips = historyTripsService.GetTripHistoryByUserId(userId);
             var personalTrip = personalTrips.FirstOrDefault();
@@ -63,9 +61,8 @@ namespace BusCompanyManagementApplication.Controllers
             var trip = historyTripsService.GetTripByPersonalTripId(personalTrip.PersonalTripId.ToString());
 
             historyTripsService.AddTripInHistory(trip.TripId.ToString(), personalTrip.PersonalTripId.ToString(), model.Status, model.TicketPrice, model.SeatNumber, model.Rating);
-            return Redirect(Url.Action("AddTripInHistory", "HistoryTrip"));
-            
-        }
+            return Redirect(Url.Action("Index", "HistoryTrip"));            
+        }        
 
     }
 }
