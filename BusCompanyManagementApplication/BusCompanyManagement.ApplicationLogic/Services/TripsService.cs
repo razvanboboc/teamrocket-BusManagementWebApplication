@@ -12,11 +12,13 @@ namespace BusCompanyManagement.ApplicationLogic.Services
     {
         private IBusRepository busRepository;
         private ITripRepository tripRepository;
+        
 
         public TripsService(IBusRepository busRepository, ITripRepository tripRepository)
         {
             this.busRepository = busRepository;
             this.tripRepository = tripRepository;
+           
         }
 
         public Trip GetTripByArrival(string arrival)
@@ -45,5 +47,25 @@ namespace BusCompanyManagement.ApplicationLogic.Services
             return tripRepository.GetTrips();
         }
 
+
+        //public Trip Add(Trip tripToBeAdded)
+        //{
+            
+        //}
+
+        //public bool Delete(Trip tripToBeDeleted)
+        //{
+            
+        //}
+
+        public IEnumerable<Trip> GetAll()
+        {
+            return tripRepository.GetAll();
+        }
+
+        //public Trip Update(T tripToUpdate)
+        //{
+            
+        //}
     }
 }

@@ -31,7 +31,7 @@ namespace BusCompanyManagement.DataAccess
 
         public IEnumerable<T> GetAll()
         {
-            return dbContext.Set<T>()
+            return dbContext.Set<T>()   
                             .AsEnumerable();
         }
 
