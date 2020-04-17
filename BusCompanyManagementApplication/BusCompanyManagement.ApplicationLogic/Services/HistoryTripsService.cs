@@ -94,15 +94,15 @@ namespace BusCompanyManagement.ApplicationLogic.Services
             }
             historyTripRepository.Add(new PersonalTrip() { PersonalTripId = Guid.NewGuid(), Status = status, TicketPrice = ticketPrice, SeatNumber = seatNumber, Rating = rating});
         }
-
-        public void RemoveHistoryTrip(string userId)
+        //
+        public void RemoveHistoryTrip(string userId, Guid personalTripId)
         {
             Guid userIdGuid = Guid.Empty;
             if (!Guid.TryParse(userId, out userIdGuid))
             {
                 throw new Exception("Invalid Guid Format");
             }
-            var historyTrip = historyTripRepository.GetHistoryTripByUserId(userIdGuid);
+            var historyTrip = historyTripRepository.GetPersonalTripByUserId(userIdGuid, personalTripId);
             historyTripRepository.Delete(historyTrip);
         }
 

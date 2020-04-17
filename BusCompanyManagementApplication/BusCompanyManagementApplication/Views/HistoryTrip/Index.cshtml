@@ -24,7 +24,16 @@
             </th>
             <th>
                 @Html.DisplayName("Rating")
-            </th>  
+            </th>
+            <th>
+                @Html.DisplayName("Destination")
+            </th>
+            <th>
+                @Html.DisplayName("Arrival time")
+            </th>
+            <th>
+                @Html.DisplayName("Destination time")
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -42,7 +51,16 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Rating)
-            </td>            
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trip.Destination)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trip.ArrivalTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trip.DestinationTime)
+            </td>
         </tr>
         }
     </tbody>
