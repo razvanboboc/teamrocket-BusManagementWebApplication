@@ -46,7 +46,9 @@ namespace BusCompanyManagementApplication
             services.AddScoped<ITripRepository, TripRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IBusRepository, BusRepository>();
+            services.AddScoped<UsersService>();
             services.AddScoped<HistoryTripsService>();
+            
             services.AddScoped<BusesService>();
             services.AddScoped<TripsService>();
 
