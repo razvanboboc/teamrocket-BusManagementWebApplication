@@ -14,7 +14,7 @@ namespace BusCompanyManagement.DataAccess
         {
             this.dbContext = dbContext;
         }
-
+        //filter by condition
         public T Add(T itemToAdd)
         {
             var entity = dbContext.Add<T>(itemToAdd);
