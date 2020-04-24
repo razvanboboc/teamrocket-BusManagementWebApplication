@@ -6,10 +6,7 @@
 <body>
     <h1>History trips</h1>
     <br />
-    <style>
-        /*tr:nth-child(even) {
-            background-color: #c89797;
-        }*/
+    <style>     
         .checked {
             color: orange;
             border-color: black;
@@ -46,14 +43,13 @@
                 </th>
             </tr>
         </thead>
-
         <tbody>
             @foreach (var item in Model.historyTrip)
             {
                 @if (item.Status == "Completed")
                 {
             <tr style="background-color: mediumseagreen">
-                <td>
+                <td>                   
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
@@ -85,13 +81,12 @@
                     </select>
 
                     <script>
-
-                                    function GetSelectedValue() {
-                                        var e = document.getElementById("rating");
-                                        var result = e.options[e.selectedIndex].value;
-                                        @item.Rating = result;
-                                        //save changes in the database
-                                    }
+                         function GetSelectedValue() {
+                             var e = document.getElementById("rating");
+                             var result = e.options[e.selectedIndex].value;
+                             @item.Rating = result;
+                             //save changes in the database
+                         }
                     </script>
                     <span class="fa fa-star checked"></span>
                     <button type="submit" onclick="GetSelectedValue()">Submit</button>
@@ -102,8 +97,7 @@
             </tr>
                 }
                 else
-                {
-                    <tr style="background-color: #c89797">
+                {  <tr style="background-color: #c89797">
                         <td>
                             @Html.DisplayFor(modelItem => item.Status)
                         </td>
@@ -126,39 +120,17 @@
                             @Html.DisplayFor(modelItem => item.Trip.DestinationTime)
                         </td>
                         <td>
-                            <select id="rating">
-                                <option value="0">@item.Rating</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-
-                            <script>
-
-                                    function GetSelectedValue() {
-                                        var e = document.getElementById("rating");
-                                        var result = e.options[e.selectedIndex].value;
-                                        @item.Rating = result;
-                                        //save changes in the database
-                                    }
-                            </script>
-                            <span class="fa fa-star checked"></span>
-                            <button type="submit" onclick="GetSelectedValue()">Submit</button>
+                            <label >Soon</label> 
                         </td>
                         <td>
                             <button type="submit" onclick="GetSelectedValue()">Delete</button>
                         </td>
-                    </tr>
+                   </tr>
                 }
-
             }
         </tbody>
-
     </table>
 </body>
-
 </html>
                 
             
