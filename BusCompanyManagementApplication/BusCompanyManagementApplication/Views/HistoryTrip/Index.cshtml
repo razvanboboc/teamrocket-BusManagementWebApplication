@@ -2,66 +2,163 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>History trips</h1>
-<br />
-<style>
-    tr:nth-child(even) {
-        background-color: #c89797;
-    }
-</style>
-<table class="table" BORDERCOLOR=#c89797>
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayName("Status")
-            </th>
-            <th>
-                @Html.DisplayName("Seat number")
-            </th>
-            <th>
-                @Html.DisplayName("Ticket Price")
-            </th>
-            <th>
-                @Html.DisplayName("Rating")
-            </th>
-            <th>
-                @Html.DisplayName("Destination")
-            </th>
-            <th>
-                @Html.DisplayName("Arrival time")
-            </th>
-            <th>
-                @Html.DisplayName("Destination time")
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.historyTrip)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TicketPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SeatNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Trip.Destination)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Trip.ArrivalTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Trip.DestinationTime)
-            </td>
-        </tr>
+<html>
+<body>
+    <h1>History trips</h1>
+    <br />
+    <style>
+        /*tr:nth-child(even) {
+            background-color: #c89797;
+        }*/
+        .checked {
+            color: orange;
+            border-color: black;
+            border: thick;
         }
-    </tbody>
-</table>
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <table class="table" BORDERCOLOR=white>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Status")
+                </th>
+                <th>
+                    @Html.DisplayName("Seat number")
+                </th>
+                <th>
+                    @Html.DisplayName("Ticket Price")
+                </th>
+                <th>
+                    @Html.DisplayName("Arrival")
+                </th>
+                <th>
+                    @Html.DisplayName("Arrival time")
+                </th>
+                <th>
+                    @Html.DisplayName("Destination")
+                </th>
+                <th>
+                    @Html.DisplayName("Destination time")
+                </th>
+                <th>
+                    @Html.DisplayName("Rating")
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.historyTrip)
+            {
+                @if (item.Status == "Completed")
+                {
+            <tr style="background-color: mediumseagreen">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TicketPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SeatNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Trip.Arrival)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Trip.ArrivalTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Trip.Destination)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Trip.DestinationTime)
+                </td>
+                <td>
+                    <select id="rating">
+                        <option value="0">@item.Rating</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+
+                    <script>
+
+                                    function GetSelectedValue() {
+                                        var e = document.getElementById("rating");
+                                        var result = e.options[e.selectedIndex].value;
+                                        @item.Rating = result;
+                                        //save changes in the database
+                                    }
+                    </script>
+                    <span class="fa fa-star checked"></span>
+                    <button type="submit" onclick="GetSelectedValue()">Submit</button>
+                </td>
+                <td>
+                    <button type="submit" onclick="GetSelectedValue()">Delete</button>
+                </td>
+            </tr>
+                }
+                else
+                {
+                    <tr style="background-color: #c89797">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TicketPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SeatNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Trip.Arrival)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Trip.ArrivalTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Trip.Destination)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Trip.DestinationTime)
+                        </td>
+                        <td>
+                            <select id="rating">
+                                <option value="0">@item.Rating</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+
+                            <script>
+
+                                    function GetSelectedValue() {
+                                        var e = document.getElementById("rating");
+                                        var result = e.options[e.selectedIndex].value;
+                                        @item.Rating = result;
+                                        //save changes in the database
+                                    }
+                            </script>
+                            <span class="fa fa-star checked"></span>
+                            <button type="submit" onclick="GetSelectedValue()">Submit</button>
+                        </td>
+                        <td>
+                            <button type="submit" onclick="GetSelectedValue()">Delete</button>
+                        </td>
+                    </tr>
+                }
+
+            }
+        </tbody>
+
+    </table>
+</body>
+
+</html>
+                
+            

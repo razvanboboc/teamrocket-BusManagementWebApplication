@@ -33,8 +33,32 @@ namespace BusCompanyManagement.DataAccess
         {
             var history = dbContext.PersonalTrips.Include(pt => pt.User)
                                                     .Include(pt => pt.Trip)
-                                                    .Where(h => h.User.UserId == userId).AsEnumerable();
-            return history;
+                                                    .Where(h => h.User.UserId == userId)                                                   
+                                                    .AsEnumerable();
+
+            List<PersonalTrip> listDone = new List<PersonalTrip>();
+            List<PersonalTrip> listUndone = new List<PersonalTrip>();
+
+
+            foreach (var item in history)
+            {
+                if (item.Trip.DestinationTime < DateTimeOffset.Now)
+                {
+                    item.Status = "Completed";
+                    listDone.Add(item);
+                }
+                else
+                {
+                    item.Status = "In progress";
+                    listUndone.Add(item);
+                }
+            }
+            dbContext.SaveChanges();
+
+            listUndone.Sort((pt1, pt2) => pt1.Trip.ArrivalTime.CompareTo(pt2.Trip.ArrivalTime));
+            listDone.Sort((pt1, pt2) => -pt1.Trip.ArrivalTime.CompareTo(pt2.Trip.ArrivalTime));
+
+            return listUndone.Concat(listDone);
         }
         //
         public PersonalTrip GetPersonalTripByUserId(Guid userId, Guid personalTripId)
