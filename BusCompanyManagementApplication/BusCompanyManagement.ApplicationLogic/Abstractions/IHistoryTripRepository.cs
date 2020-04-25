@@ -9,7 +9,7 @@ namespace BusCompanyManagement.ApplicationLogic.Abstractions
     {
         PersonalTrip GetHistoryTripByUserId(Guid userId);
         Trip GetTripByPersonalTripId(Guid personalTripId);
-        IEnumerable<PersonalTrip> GetPersonalTripsByUserId(Guid personalTripId);
+        IEnumerable<PersonalTrip> GetPersonalTripsByUserId(Guid personalTripId);        
         //
         PersonalTrip GetPersonalTripByUserId(Guid userId, Guid personalTripId);
     }

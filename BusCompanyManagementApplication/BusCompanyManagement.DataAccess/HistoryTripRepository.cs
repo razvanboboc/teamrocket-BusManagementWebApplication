@@ -24,8 +24,8 @@ namespace BusCompanyManagement.DataAccess
         public Trip GetTripByPersonalTripId(Guid personalTripId)
         {
             var personalTrip = dbContext.PersonalTrips.Include(pt=>pt.Trip)
-                                                        .Include(pt => pt.User)
-                                                        .Where(t => t.PersonalTripId == personalTripId).SingleOrDefault();
+                                                       .Include(pt => pt.User)
+                                                       .Where(t => t.PersonalTripId == personalTripId).SingleOrDefault();
             return personalTrip.Trip;
         }
 
@@ -68,7 +68,6 @@ namespace BusCompanyManagement.DataAccess
                                                     .Where(h => h.User.UserId == userId && h.PersonalTripId == personalTripId).SingleOrDefault();
                                                     
             return personalTrip;
-        }
-
+        }        
     }
 }

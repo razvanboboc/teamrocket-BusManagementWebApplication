@@ -45,6 +45,12 @@ namespace BusCompanyManagementApplication.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult DeleteTripHistory()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult AddTripinHistory([FromForm]AddTripInHistoryViewModel model)
         {
@@ -62,7 +68,15 @@ namespace BusCompanyManagementApplication.Controllers
 
             historyTripsService.AddTripInHistory(trip.TripId.ToString(), personalTrip.PersonalTripId.ToString(), model.Status, model.TicketPrice, model.SeatNumber, model.Rating);
             return Redirect(Url.Action("Index", "HistoryTrip"));            
-        }        
+        }
+
+        [HttpPost]
+        public IActionResult DeleteTripHistory(Guid id)
+        {
+            var userId = userManager.GetUserId(User);
+            historyTripsService.RemoveHistoryTrip(userId, id);
+            return Redirect(Url.Action("Index", "HistoryTrip"));
+        }
 
     }
 }
