@@ -63,6 +63,8 @@ namespace BusCompanyManagement.ApplicationLogic.Services
             return tripRepository.GetAll();
         }
 
+
+
         //public Trip Update(T tripToUpdate)
         //{
             
