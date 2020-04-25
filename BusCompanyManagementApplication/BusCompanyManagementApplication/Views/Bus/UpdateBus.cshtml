@@ -1,0 +1,37 @@
+﻿@model BusCompanyManagementApplication.Models.Buses.UpdateBusViewModel
+@{
+    ViewData["Title"] = "UpdateBus";
+}
+
+<h1>Update Bus</h1>
+
+<form asp-action="UpdateBus" method="post">
+
+    <input type="hidden" asp-for="BusId" />
+    <input type="submit" value="Delete" class="btn btn-default" />
+    <a asp-action="Index">Back</a>
+    <div class="row">
+        <div class="col-2">
+            Bus Brand
+        </div>
+        <div class="col-10">
+            <input class="form-control" type="text" asp-for="BusBrand" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            Total Seats
+        </div>
+        <div class="col-10">
+            <textarea class="form-control"
+                      asp-for="TotalSeats">   
+            </textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-10"></div>
+        <div class="col-2">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </div>
+</form>

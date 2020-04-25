@@ -13,7 +13,13 @@ namespace BusCompanyManagement.DataAccess
         {
 
         }
-        
+
+        public Bus GetBusByBusId(Guid busId)
+        {
+            var bus = dbContext.Buses.Where(b => b.BusId == busId).SingleOrDefault();
+            return bus;
+        }
+
         public Bus GetBusByTripId(Guid tripId)
         {
             var bus = dbContext.Buses.Where(b => b.Trips.Any(trip => trip.TripId == tripId)).SingleOrDefault();

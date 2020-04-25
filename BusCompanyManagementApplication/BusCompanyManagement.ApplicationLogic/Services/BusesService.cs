@@ -57,5 +57,20 @@ namespace BusCompanyManagement.ApplicationLogic.Services
             var bus = busRepository.GetBusByTripId(tripIdGuid);
             busRepository.Delete(bus);
         }
+
+        public void DeleteBus(Guid busId)
+        {
+            var bus = busRepository.GetBusByBusId(busId);
+            busRepository.Delete(bus);
+        }
+
+        public void UpdateBus(Guid busId, string busBrand, int totalSeats)
+        {
+            var bus = busRepository.GetBusByBusId(busId);
+            bus.BusBrand = busBrand;
+            bus.TotalSeats = totalSeats;
+            busRepository.Update(bus);
+        }
+
     }
 }

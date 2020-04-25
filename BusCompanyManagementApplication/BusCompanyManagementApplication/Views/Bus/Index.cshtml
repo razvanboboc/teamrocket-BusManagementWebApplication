@@ -8,7 +8,8 @@
 
 <br />
 
-<table class="table" BORDERCOLOR=#c99797>
+<a href='@Url.Action("AddBus", "Bus")'>Add Bus</a>
+<table class="table">
     <thead>
         <tr>
             <th>
@@ -19,6 +20,9 @@
             </th>
             <th>
                 @Html.DisplayName("blabla")
+            </th>
+            <th>
+
             </th>
         </tr>
     </thead>
@@ -36,6 +40,11 @@
             <td>
                 @Html.DisplayFor(model => item.BusFacility.HasTv)
             </td>
+            <td>
+                <a asp-action="DeleteBus" asp-route-id="@item.BusId">Delete</a>
+                <a asp-action="UpdateBus" asp-route-id="@item.BusId">Update</a>
+            </td>
+
 
         </tr>
         }

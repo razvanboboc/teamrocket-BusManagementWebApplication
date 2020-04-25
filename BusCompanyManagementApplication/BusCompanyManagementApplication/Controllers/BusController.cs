@@ -30,5 +30,54 @@ namespace BusCompanyManagementApplication.Controllers
             }
         }
 
+        
+        [HttpGet]
+        public IActionResult AddBus()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult DeleteBus()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult UpdateBus()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddBus([FromForm]AddBusViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            busesService.AddBus("b9f7ba98-7f0a-4201-89ae-ae8195d869ee", 
+                            model.BusBrand, 
+                            model.TotalSeats);
+            return Redirect(Url.Action("Index", "Bus"));
+
+        }
+
+        [HttpPost]
+        public IActionResult DeleteBus(Guid id)
+        {
+            busesService.DeleteBus(id);
+            return Redirect(Url.Action("Index", "Bus"));
+        }
+
+        [HttpPost]
+        public IActionResult UpdateBus([FromForm]UpdateBusViewModel model, Guid id)
+        {
+            busesService.UpdateBus(id, model.BusBrand, model.TotalSeats);
+            return Redirect(Url.Action("Index", "Bus"));
+        }
+
+
     }
 }

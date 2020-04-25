@@ -10,6 +10,8 @@ namespace BusCompanyManagement.ApplicationLogic.Abstractions
         Bus GetBusByTripId(Guid tripId);
 
         IEnumerable<Bus> GetBuses();
+
+        Bus GetBusByBusId(Guid busId);
     }
 }
 
