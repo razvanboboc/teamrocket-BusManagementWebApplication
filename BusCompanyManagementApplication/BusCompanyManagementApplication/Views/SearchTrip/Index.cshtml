@@ -3,11 +3,11 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Bus</h1>
+<h1>Trip</h1>
 
 <br/>
-
-<table class="table" BORDERCOLOR=#33B7FF>
+<a href='@Url.Action("AddTrip", "SearchTrip")'>Create Trip</a>
+<table class="table">
     <thead>
         <tr>
             <th>
@@ -27,22 +27,27 @@
     <tbody>
         @foreach (var item in Model.Trips)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(model => item.ArrivalTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.DestinationTime)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.ArrivalTime)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.DestinationTime)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(model => item.Arrival)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.Destination)
-                </td>
+            <td>
+                @Html.DisplayFor(model => item.Arrival)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Destination)
+            </td>
 
-            </tr>
+            <td>
+                <a asp-action="DeleteTrip" asp-route-id="@item.TripId">Delete</a>
+                <a asp-action="UpdateTrip" asp-route-id="@item.TripId">Update</a>
+            </td>
+
+        </tr>
         }
     </tbody>
 </table>

@@ -48,26 +48,53 @@ namespace BusCompanyManagement.ApplicationLogic.Services
         }
 
 
-        //public Trip Add(Trip tripToBeAdded)
-        //{
-            
-        //}
-
-        //public bool Delete(Trip tripToBeDeleted)
-        //{
-            
-        //}
 
         public IEnumerable<Trip> GetAll()
         {
             return tripRepository.GetAll();
+
         }
 
+        //Add trip
+        public void AddTrip (string destination, string arrival, DateTime arrivalTime, DateTime destinationTime)
+        {
 
+            tripRepository.Add(new Trip() { TripId = Guid.NewGuid(), Arrival = arrival, Destination = destination,
+                                            ArrivalTime = arrivalTime, DestinationTime = destinationTime});
+        }
 
-        //public Trip Update(T tripToUpdate)
-        //{
-            
-        //}
+        //Remove trip
+        public void RemoveTrip(string tripId)
+        {
+            Guid tripIdGuid = Guid.Empty;
+            if (!Guid.TryParse(tripId, out tripIdGuid))
+            {
+                throw new Exception("Invalid Guid Format");
+            }
+            var trip = tripRepository.GetTripBy(tripIdGuid);
+            tripRepository.Delete(trip);
+        }
+
+        public void DeleteTrip(Guid tripId)
+        {
+            var trip = tripRepository.GetTripBy(tripId);
+            tripRepository.Delete(trip);
+        }
+
+        public void UpdateTrip(string tripId, string destination, string arrival, DateTime arrivalTime, DateTime destinationTime)
+        {
+            Guid tripIdGuid = Guid.Empty;
+            if (!Guid.TryParse(tripId, out tripIdGuid))
+            {
+                throw new Exception("Invalid Guid Format");
+            }
+
+            var trip = tripRepository.GetTripBy(tripIdGuid);
+            trip.Arrival = arrival;
+            trip.Destination= destination;
+            trip.ArrivalTime = arrivalTime;
+            trip.DestinationTime = destinationTime;
+            tripRepository.Update(trip);
+        }
     }
 }
