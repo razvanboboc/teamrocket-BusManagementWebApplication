@@ -8,7 +8,7 @@
 <form asp-action="UpdateTrip" method="post">
 
     <input type="hidden" asp-for="TripId" />
-    <input type="submit" value="Delete" class="btn btn-default" />
+    
     <a asp-action="Index">Back</a>
     <div class="row">
         <div class="col-2">
@@ -30,26 +30,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-2">
-            Arrival Time
-        </div>
-        <div class="col-10">
-            <textarea class="form-control"
-                      asp-for="ArrivalTime">
-    
-            </textarea>
-        </div>
+        <label for="ArrivalTime">ArrivalTime (date and time):</label>
+        <input type="datetime-local" id="arrivaltime" name="arrivaltime">
+
     </div>
     <div class="row">
-        <div class="col-2">
-            Destination Time
-        </div>
-        <div class="col-10">
-            <textarea class="form-control"
-                      asp-for="DestinationTime">
-    
-            </textarea>
-        </div>
+        <label for="DestinationTime">DestinationTime (date and time):</label>
+        <input type="datetime-local" id="destinationtime" name="destinationtime">
+
     </div>
     <div class="row">
         <div class="col-10"></div>

@@ -81,15 +81,15 @@ namespace BusCompanyManagement.ApplicationLogic.Services
             tripRepository.Delete(trip);
         }
 
-        public void UpdateTrip(string tripId, string destination, string arrival, DateTime arrivalTime, DateTime destinationTime)
+        public void UpdateTrip(Guid tripId, string destination, string arrival, DateTime arrivalTime, DateTime destinationTime)
         {
-            Guid tripIdGuid = Guid.Empty;
-            if (!Guid.TryParse(tripId, out tripIdGuid))
-            {
-                throw new Exception("Invalid Guid Format");
-            }
+            //Guid tripIdGuid = Guid.Empty;
+            //if (!Guid.TryParse(tripId, out tripIdGuid))
+            //{
+            //    throw new Exception("Invalid Guid Format");
+            //}
 
-            var trip = tripRepository.GetTripBy(tripIdGuid);
+            var trip = tripRepository.GetTripBy(tripId);
             trip.Arrival = arrival;
             trip.Destination= destination;
             trip.ArrivalTime = arrivalTime;

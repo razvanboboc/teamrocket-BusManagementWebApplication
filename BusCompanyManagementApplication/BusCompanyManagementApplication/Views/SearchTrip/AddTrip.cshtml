@@ -3,53 +3,42 @@
     ViewData["Title"] = "AddTrip";
 }
 
-<form asp-action="AddTrip" method="post">
+    <form asp-action="AddTrip" method="post">
 
-    <div class="row">
-        <div class="col-2">
-            Arrival
+        <div class="row">
+            <div class="col-2">
+                Arrival
+            </div>
+            <div class="col-10">
+                <input class="form-control" type="text" asp-for="Arrival" />
+            </div>
         </div>
-        <div class="col-10">
-            <input class="form-control" type="text" asp-for="Arrival" />
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-2">
-            Destination
-        </div>
-        <div class="col-10">
-            <textarea class="form-control"
-                      asp-for="Destination">
+        <div class="row">
+            <div class="col-2">
+                Destination
+            </div>
+            <div class="col-10">
+                <textarea class="form-control"
+                          asp-for="Destination">
     
             </textarea>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-2">
-            Arrival Time
+        <div class="row">
+            <label for="ArrivalTime">ArrivalTime (date and time):</label>
+            <input type="datetime-local" id="arrivaltime" name="arrivaltime">
+
         </div>
-        <div class="col-10">
-            <textarea class="form-control"
-                      asp-for="ArrivalTime">
-    
-            </textarea>
+        <div class="row">
+            <label for="DestinationTime">DestinationTime (date and time):</label>
+            <input type="datetime-local" id="destinationtime" name="destinationtime">
+
         </div>
-    </div>
-    <div class="row">
-        <div class="col-2">
-            Destination Time
+       
+        <div class="row">
+            <div class="col-10"></div>
+            <div class="col-2">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
         </div>
-        <div class="col-10">
-            <textarea class="form-control"
-                      asp-for="DestinationTime">
-    
-            </textarea>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-10"></div>
-        <div class="col-2">
-            <button type="submit" class="btn btn-primary">Save</button>
-        </div>
-    </div>
-</form>
+    </form>

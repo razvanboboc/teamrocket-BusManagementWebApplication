@@ -56,11 +56,11 @@ namespace BusCompanyManagementApplication.Controllers
         [HttpPost]
         public IActionResult AddTrip([FromForm]AddTripViewModel model)
         {   //program crashes for this. 
-            //if (!ModelState.IsValid) 
-            //{
+            if (!ModelState.IsValid)
+            {
 
-            //    return BadRequest();
-            //}
+                return BadRequest();
+            }
 
             tripsService.AddTrip(model.Destination, model.Arrival, model.ArrivalTime, model.DestinationTime);
 
@@ -76,9 +76,17 @@ namespace BusCompanyManagementApplication.Controllers
         }
 
         [HttpPost]
-        public IActionResult UpdateTrip([FromForm]UpdateTripViewModel model, String id)
+        public IActionResult UpdateTrip([FromForm]UpdateTripViewModel model, Guid id)
         {
-            tripsService.UpdateTrip(id, model.Destination, model.Arrival,  model.ArrivalTime, model.DestinationTime);
+            model.TripId = id;
+           
+            //if (!ModelState.IsValid)
+            //{
+
+            //    return BadRequest();
+            //}
+
+            tripsService.UpdateTrip(model.TripId, model.Destination, model.Arrival,  model.ArrivalTime, model.DestinationTime);
             return Redirect(Url.Action("Index", "SearchTrip"));
         }
 
