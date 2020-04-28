@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "AddBus";
 }
-
+<h1>Add Bus</h1>
     <form asp-action="AddBus" method="post">
 
         <div class="row">
@@ -13,21 +13,20 @@
                 <input class="form-control" type="text" asp-for="BusBrand" />
             </div>
         </div>
+        <br>
         <div class="row">
             <div class="col-2">
                 Total Seats
             </div>
             <div class="col-10">
-                <textarea class="form-control"
-                          asp-for="TotalSeats">
-    
-            </textarea>
+                <input class="form-control" type="text" asp-for="TotalSeats" />
             </div>
         </div>
+        <br>
         <div class="row">
-            <div class="col-10"></div>
+            <div class="col-6"></div>
             <div class="col-2">
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Add</button>
             </div>
         </div>
     </form>
