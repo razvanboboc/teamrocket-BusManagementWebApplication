@@ -105,5 +105,14 @@ namespace BusCompanyManagement.ApplicationLogic.Services
             var historyTrip = historyTripRepository.GetPersonalTripByUserId(userIdGuid, personalTripId);
             historyTripRepository.Delete(historyTrip);
         }  
+
+        public void SaveRating(string userId, Guid personalTripId, int rating)
+        {
+            Guid userIdGuid = Guid.Parse(userId);
+            var historyTrip = historyTripRepository.GetPersonalTripByUserId(userIdGuid, personalTripId);
+            historyTrip.Rating = rating;
+            historyTripRepository.Update(historyTrip);
+
+        }
     }
 }

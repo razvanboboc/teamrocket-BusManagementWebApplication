@@ -77,6 +77,13 @@ namespace BusCompanyManagementApplication.Controllers
             historyTripsService.RemoveHistoryTrip(userId, id);
             return Redirect(Url.Action("Index", "HistoryTrip"));
         }
+        [HttpPost]
+        public IActionResult SaveRating([FromForm(Name = "item.PersonalTripId")] Guid tripId,[FromForm (Name = "item.Rating")] int rating)
+        {
+            var userId = userManager.GetUserId(User);
+            historyTripsService.SaveRating(userId, tripId, rating);
+            return RedirectToAction("Index");
+        }
 
     }
 }

@@ -72,25 +72,30 @@
                             @Html.DisplayFor(modelItem => item.Trip.DestinationTime)
                         </td>
                         <td>
-                            <select id="rating">
-                                <option value="0">@item.Rating</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
+                            <form asp-controller="HistoryTrip" asp-action="SaveRating" method="post">
+                                <input type="hidden" asp-for="@item.PersonalTripId" />
+                                <select asp-for="@item.Rating">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
 
-                            <script>
+                                <script>
+
                          function GetSelectedValue() {
                              var e = document.getElementById("rating");
                              var result = e.options[e.selectedIndex].value;
                              @item.Rating = result;
                              //save changes in the database
                          }
-                            </script>
-                            <span class="fa fa-star checked"></span>
-                            <button type="submit" onclick="GetSelectedValue()">Submit</button>
+                                </script>
+                                <span class="fa fa-star checked"></span>
+                                <button type="submit">Submit</button>
+                            </form>
+
                         </td>
                         <td>
                             <a asp-action="DeleteTripHistory" asp-route-id="@item.PersonalTripId">
