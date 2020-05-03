@@ -14,7 +14,7 @@ namespace BusCompanyManagement.DataAccess
         {
             this.dbContext = dbContext;
         }
-
+        //filter by condition
         public T Add(T itemToAdd)
         {
             var entity = dbContext.Add<T>(itemToAdd);
@@ -31,7 +31,7 @@ namespace BusCompanyManagement.DataAccess
 
         public IEnumerable<T> GetAll()
         {
-            return dbContext.Set<T>()
+            return dbContext.Set<T>()   
                             .AsEnumerable();
         }
 

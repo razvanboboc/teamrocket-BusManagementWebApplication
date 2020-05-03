@@ -1,0 +1,48 @@
+﻿
+@model BusCompanyManagementApplication.Models.Users.UserViewModel
+<table class="table" BORDERCOLOR=#33B7FF>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Id")
+            </th>
+            <th>
+                @Html.DisplayName("Email")
+            </th>
+
+            <th>
+                @Html.DisplayName("Password")
+            </th>
+            <th>
+                @Html.DisplayName("Firstname")
+            </th>
+            <th>
+                @Html.DisplayName("LastName")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Users)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.EmailAdress)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Password)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.LastName)
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>

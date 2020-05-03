@@ -1,0 +1,15 @@
+﻿@model BusCompanyManagement.ApplicationLogic.DataModel.Trip
+
+@{
+    ViewData["Title"] = "DeleteTrip";
+}
+
+<h1>Delete Trip</h1>
+
+<div>
+    <form asp-action="DeleteTrip">
+        <input type="hidden" asp-for="TripId" />
+        <input type="submit" value="Delete" class="btn btn-default" />
+        <a asp-action="Index">Back</a>
+    </form>
+</div>
