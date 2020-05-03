@@ -7,7 +7,7 @@ using System.Text;
 
 namespace BusCompanyManagement.DataAccess
 {
-    class TripRepository : BaseRepository<Trip>, ITripRepository
+   public class TripRepository : BaseRepository<Trip>, ITripRepository
     {
         public TripRepository(BusCompanyManagementDbContext dbContext) : base(dbContext)
         {
@@ -15,7 +15,7 @@ namespace BusCompanyManagement.DataAccess
         }
 
 
-        public Trip GetTrip(Guid tripId)
+        public Trip GetTripBy(Guid tripId)
         {
             var trip = dbContext.Trips.Where(t => t.TripId == tripId).SingleOrDefault();
             return trip;

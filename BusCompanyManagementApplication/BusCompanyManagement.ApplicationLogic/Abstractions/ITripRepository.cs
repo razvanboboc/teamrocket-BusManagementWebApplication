@@ -7,7 +7,7 @@ namespace BusCompanyManagement.ApplicationLogic.Abstractions
 {
     public interface ITripRepository : IRepository<Trip>
     {
-        Trip GetTrip(Guid tripId);
+        Trip GetTripBy(Guid tripId);
         Trip GetTripByDestination(string destination); // remove
         Trip GetTripByArrival(string arrival); //remove
     }

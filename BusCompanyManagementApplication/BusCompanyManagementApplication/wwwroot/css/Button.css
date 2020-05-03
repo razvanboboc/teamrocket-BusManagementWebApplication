@@ -1,0 +1,16 @@
+﻿.btnn {
+    background-color: black;
+    padding: 4px 28px;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+    .btnn:hover {
+        background: green;
+        color: white
+    }
+
+.success {
+    color: white
+}
