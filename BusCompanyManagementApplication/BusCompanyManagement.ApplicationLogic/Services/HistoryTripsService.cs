@@ -20,7 +20,7 @@ namespace BusCompanyManagement.ApplicationLogic.Services
             this.historyTripRepository = historyTripRepository;
             this.userRepository = userRepository;
         }
-
+        //
 
         public IEnumerable<PersonalTrip> GetTripHistoryByUserId(string userId)
         {
