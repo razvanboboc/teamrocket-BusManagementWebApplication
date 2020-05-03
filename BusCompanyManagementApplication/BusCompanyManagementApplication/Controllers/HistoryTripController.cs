@@ -23,15 +23,13 @@ namespace BusCompanyManagementApplication.Controllers
             this.userManager = userManager;
             this.historyTripsService = historyTripsService;
         }
-       //problem
+      
         public ActionResult Index()
         {
             try
             {
-                var userId = userManager.GetUserId(User);
-                //var personalTripId = historyTripsService.GetPersonalTripByUserId(userId);//            
-                var historyTrip = historyTripsService.GetTripHistoryByUserId(userId);
-                //var trip = historyTripsService.GetTripByPersonalTripId(personalTripId.ToString());//
+                var userId = userManager.GetUserId(User);                    
+                var historyTrip = historyTripsService.GetTripHistoryByUserId(userId);               
                 
                 return View(new HistoryTripsViewModel { historyTrip = historyTrip});
             }
@@ -47,6 +45,12 @@ namespace BusCompanyManagementApplication.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult DeleteTripHistory()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult AddTripinHistory([FromForm]AddTripInHistoryViewModel model)
         {
@@ -55,7 +59,7 @@ namespace BusCompanyManagementApplication.Controllers
 
                 return BadRequest();
             }
-            // ???
+            
             var userId = userManager.GetUserId(User);
             var personalTrips = historyTripsService.GetTripHistoryByUserId(userId);
             var personalTrip = personalTrips.FirstOrDefault();
@@ -63,8 +67,22 @@ namespace BusCompanyManagementApplication.Controllers
             var trip = historyTripsService.GetTripByPersonalTripId(personalTrip.PersonalTripId.ToString());
 
             historyTripsService.AddTripInHistory(trip.TripId.ToString(), personalTrip.PersonalTripId.ToString(), model.Status, model.TicketPrice, model.SeatNumber, model.Rating);
-            return Redirect(Url.Action("AddTripInHistory", "HistoryTrip"));
-            
+            return Redirect(Url.Action("Index", "HistoryTrip"));            
+        }
+
+        [HttpPost]
+        public IActionResult DeleteTripHistory(Guid id)
+        {
+            var userId = userManager.GetUserId(User);
+            historyTripsService.RemoveHistoryTrip(userId, id);
+            return Redirect(Url.Action("Index", "HistoryTrip"));
+        }
+        [HttpPost]
+        public IActionResult SaveRating([FromForm(Name = "item.PersonalTripId")] Guid tripId,[FromForm (Name = "item.Rating")] int rating)
+        {
+            var userId = userManager.GetUserId(User);
+            historyTripsService.SaveRating(userId, tripId, rating);
+            return RedirectToAction("Index");
         }
 
     }

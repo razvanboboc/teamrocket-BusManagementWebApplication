@@ -33,10 +33,12 @@ namespace BusCompanyManagement.DataAccess
             return trip;
         }
 
+
         public IEnumerable<Trip> GetTrips()
         {
             var trips = dbContext.Trips.AsEnumerable();
             return trips;
         }
+
     }
 }

@@ -20,7 +20,7 @@ namespace BusCompanyManagement.ApplicationLogic.Services
             this.historyTripRepository = historyTripRepository;
             this.userRepository = userRepository;
         }
-
+        //
 
         public IEnumerable<PersonalTrip> GetTripHistoryByUserId(string userId)
         {
@@ -29,7 +29,7 @@ namespace BusCompanyManagement.ApplicationLogic.Services
             {
                 throw new Exception("Invalid Guid Format");
             }
-            // problem         
+                   
             return historyTripRepository.GetPersonalTripsByUserId(userIdGuid);                                       
         }
 
@@ -93,6 +93,26 @@ namespace BusCompanyManagement.ApplicationLogic.Services
                 throw new EntityNotFoundException(personalTripIdGuid);
             }
             historyTripRepository.Add(new PersonalTrip() { PersonalTripId = Guid.NewGuid(), Status = status, TicketPrice = ticketPrice, SeatNumber = seatNumber, Rating = rating});
+        }
+        //
+        public void RemoveHistoryTrip(string userId, Guid personalTripId)
+        {
+            Guid userIdGuid = Guid.Empty;
+            if (!Guid.TryParse(userId, out userIdGuid))
+            {
+                throw new Exception("Invalid Guid Format");
+            }
+            var historyTrip = historyTripRepository.GetPersonalTripByUserId(userIdGuid, personalTripId);
+            historyTripRepository.Delete(historyTrip);
+        }  
+
+        public void SaveRating(string userId, Guid personalTripId, int rating)
+        {
+            Guid userIdGuid = Guid.Parse(userId);
+            var historyTrip = historyTripRepository.GetPersonalTripByUserId(userIdGuid, personalTripId);
+            historyTrip.Rating = rating;
+            historyTripRepository.Update(historyTrip);
+
         }
     }
 }
