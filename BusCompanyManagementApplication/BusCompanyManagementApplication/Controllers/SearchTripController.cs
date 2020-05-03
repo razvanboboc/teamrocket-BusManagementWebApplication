@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BusCompanyManagementApplication.Controllers
-{
+{   //[Authorize]
     public class SearchTripController : Controller
     {
         private readonly TripsService tripsService;
@@ -55,7 +55,7 @@ namespace BusCompanyManagementApplication.Controllers
 
         [HttpPost]
         public IActionResult AddTrip([FromForm]AddTripViewModel model)
-        {   //program crashes for this. 
+        {   
             if (!ModelState.IsValid)
             {
 
