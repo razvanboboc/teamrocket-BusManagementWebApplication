@@ -51,6 +51,13 @@ namespace BusCompanyManagementApplication.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult BookSeat()
+        {
+            return View();
+        }
+
+
         [HttpPost]
         public IActionResult AddTripinHistory([FromForm]AddTripInHistoryViewModel model)
         {
