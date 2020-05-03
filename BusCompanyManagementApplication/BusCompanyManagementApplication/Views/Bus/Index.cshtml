@@ -1,0 +1,52 @@
+﻿
+@model BusCompanyManagementApplication.Models.Buses.BusViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Bus</h1>
+
+<br />
+
+<a href='@Url.Action("AddBus", "Bus")'>Add Bus</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Bus Brand")
+            </th>
+            <th>
+                @Html.DisplayName("Total Seats")
+            </th>
+            <th>
+                @Html.DisplayName("blabla")
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Buses)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.BusBrand)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.TotalSeats)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => item.BusFacility.HasTv)
+            </td>
+            <td>
+                <a asp-action="DeleteBus" asp-route-id="@item.BusId">Delete</a>
+                <a asp-action="UpdateBus" asp-route-id="@item.BusId">Update</a>
+            </td>
+
+
+        </tr>
+        }
+    </tbody>
+</table>

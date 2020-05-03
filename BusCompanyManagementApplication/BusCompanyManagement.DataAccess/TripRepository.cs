@@ -32,5 +32,6 @@ namespace BusCompanyManagement.DataAccess
             var trip = dbContext.Trips.Where(t => t.Destination == destination).SingleOrDefault();
             return trip;
         }
+        
     }
 }
