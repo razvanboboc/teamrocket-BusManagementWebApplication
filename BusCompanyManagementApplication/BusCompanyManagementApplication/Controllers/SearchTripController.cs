@@ -13,11 +13,13 @@ namespace BusCompanyManagementApplication.Controllers
     public class SearchTripController : Controller
     {
         private readonly TripsService tripsService;
+        private readonly BusesService busesService;
 
-        public SearchTripController(TripsService tripsService)
+        public SearchTripController(TripsService tripsService, BusesService busesService)
         {
 
             this.tripsService = tripsService;
+            this.busesService = busesService;
         }
 
         // GET: Bus
@@ -52,6 +54,9 @@ namespace BusCompanyManagementApplication.Controllers
         {
             return View();
         }
+
+
+        
 
         [HttpPost]
         public IActionResult AddTrip([FromForm]AddTripViewModel model)
