@@ -54,8 +54,7 @@
     </div>
 </div>
 
-<a asp-action="Index"><input type="submit" value="Buy ticket" onclick="return buy();" class="btnn success" /></a>
-
+<a href="@Url.Action("Index", "HistoryTrip")"><input type="submit" value="Buy ticket" onclick="return buy();" class="btnn success" /></a>
 <input type="reset" value="Cancel" onclick="return cancel();">
 
 

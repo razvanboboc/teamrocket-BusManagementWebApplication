@@ -53,6 +53,12 @@ namespace BusCompanyManagementApplication.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult BookSeat()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult AddTrip([FromForm]AddTripViewModel model)
         {   
@@ -65,7 +71,6 @@ namespace BusCompanyManagementApplication.Controllers
             tripsService.AddTrip(model.Destination, model.Arrival, model.ArrivalTime, model.DestinationTime);
 
             return Redirect(Url.Action("Index", "SearchTrip"));
-
         }
 
         [HttpPost]

@@ -49,13 +49,7 @@ namespace BusCompanyManagementApplication.Controllers
         public IActionResult DeleteTripHistory()
         {
             return View();
-        }
-
-        [HttpGet]
-        public IActionResult BookSeat()
-        {
-            return View();
-        }
+        }        
 
 
         [HttpPost]
