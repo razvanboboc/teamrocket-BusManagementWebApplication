@@ -79,13 +79,5 @@ namespace BusCompanyManagementApplication.Controllers
             return Redirect(Url.Action("Index", "Bus"));
         }
 
-        //[HttpGet]
-        //public IActionResult BusInfo([FromRoute]string tripId)
-        //{
-        //    var bus = busesService.GetBusByTripId(tripId);
-        //    return View(new BusInfoViewModel { Bus = bus });
-        //}
-
-
     }
 }
