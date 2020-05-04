@@ -29,8 +29,7 @@ namespace BusCompanyManagementApplication.Controllers
             try
             {
                 var userId = userManager.GetUserId(User);                    
-                var historyTrip = historyTripsService.GetTripHistoryByUserId(userId);               
-                
+                var historyTrip = historyTripsService.GetTripHistoryByUserId(userId); 
                 return View(new HistoryTripsViewModel { historyTrip = historyTrip});
             }
             catch (Exception)

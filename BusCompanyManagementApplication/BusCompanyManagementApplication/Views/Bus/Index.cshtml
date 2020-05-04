@@ -22,7 +22,7 @@
             </th> 
         </tr>
     </thead>
-    <tbody>     
+    <tbody> 
         
         <tr>
             <td>
@@ -30,16 +30,11 @@
             </td>
             <td>
                 @Model.Bus.TotalSeats
-            </td>
-
-         
+            </td>         
             <td>
                 <a asp-action="DeleteBus" asp-route-id="@Model.Bus.BusId">Delete</a>
                 <a asp-action="UpdateBus" asp-route-id="@Model.Bus.BusId">Update</a>
             </td>
-
-
-        </tr>
-        }
+        </tr>        
     </tbody>
 </table>
