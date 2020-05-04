@@ -20,31 +20,25 @@
             <th>
                 @Html.DisplayName("Total Seats")
             </th>
-            <th>
-                @Html.DisplayName("blabla")
-            </th>
-            <th>
-
-            </th>
+          
+        
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Buses)
-        {
+      
+        
         <tr>
             <td>
-                @Html.DisplayFor(model => item.BusBrand)
+                @Model.Bus.BusBrand
             </td>
             <td>
-                @Html.DisplayFor(model => item.TotalSeats)
+                @Model.Bus.TotalSeats
             </td>
 
+         
             <td>
-                @Html.DisplayFor(model => item.BusFacility.HasTv)
-            </td>
-            <td>
-                <a asp-action="DeleteBus" asp-route-id="@item.BusId">Delete</a>
-                <a asp-action="UpdateBus" asp-route-id="@item.BusId">Update</a>
+                <a asp-action="DeleteBus" asp-route-id="@Model.Bus.BusId">Delete</a>
+                <a asp-action="UpdateBus" asp-route-id="@Model.Bus.BusId">Update</a>
             </td>
 
 

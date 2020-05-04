@@ -8,6 +8,6 @@ namespace BusCompanyManagementApplication.Models.Buses
 {
     public class BusViewModel
     {
-        public IEnumerable<Bus> Buses { get; set; }
+        public Bus Bus { get; set; }
     }
 }
