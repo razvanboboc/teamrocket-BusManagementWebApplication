@@ -18,14 +18,15 @@ namespace BusCompanyManagementApplication.Controllers
         }
 
         // GET: Bus
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
             
             try
             {
-                var buses = busesService.GetBuses();
+                
+                var bus = busesService.GetBusByTripId(id);
 
-                return View(new BusViewModel { Buses = buses });
+                return View(new BusViewModel { Bus = bus });
             }
             catch (Exception)
             {
@@ -81,7 +82,6 @@ namespace BusCompanyManagementApplication.Controllers
             busesService.UpdateBus(id, model.BusBrand, model.TotalSeats);
             return Redirect(Url.Action("Index", "Bus"));
         }
-
 
     }
 }
