@@ -49,7 +49,8 @@ namespace BusCompanyManagementApplication.Controllers
         public IActionResult DeleteTripHistory()
         {
             return View();
-        }
+        }        
+
 
         [HttpPost]
         public IActionResult AddTripinHistory([FromForm]AddTripInHistoryViewModel model)

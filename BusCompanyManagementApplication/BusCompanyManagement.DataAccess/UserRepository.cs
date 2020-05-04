@@ -31,6 +31,7 @@ namespace BusCompanyManagement.DataAccess
             var user = dbContext.Users.Where(u => u.FirstName == firstName && u.LastName == lastName).SingleOrDefault();
             return user;
         }
+       
 
     }
 }

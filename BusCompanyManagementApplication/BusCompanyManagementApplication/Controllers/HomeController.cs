@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BusCompanyManagementApplication.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BusCompanyManagementApplication.Controllers
 {
@@ -23,6 +24,7 @@ namespace BusCompanyManagementApplication.Controllers
             return View();
         }
 
+        //[Authorize(Roles ="User")]
         public IActionResult Privacy()
         {
             return View();

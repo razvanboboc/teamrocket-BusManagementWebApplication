@@ -40,15 +40,18 @@ namespace BusCompanyManagementApplication
                 );
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+               .AddEntityFrameworkStores<ApplicationDbContext>();
+           // services.AddIdentity<IdentityUser ,IdentityRole>()
+             //   .AddEntityFrameworkStores<ApplicationDbContext>();
             
+
             services.AddScoped<IHistoryTripRepository, HistoryTripRepository>();
             services.AddScoped<ITripRepository, TripRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IBusRepository, BusRepository>();
             services.AddScoped<UsersService>();
             services.AddScoped<HistoryTripsService>();
-            
+                        
             services.AddScoped<BusesService>();
             services.AddScoped<TripsService>();
 
