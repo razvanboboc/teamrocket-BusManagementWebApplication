@@ -34,25 +34,28 @@ namespace BusCompanyManagementApplication.Controllers
 
 
 
-        
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public IActionResult AddBus()
         {
             return View();
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public IActionResult DeleteBus()
         {
             return View();
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public IActionResult UpdateBus()
         {
             return View();
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public IActionResult AddBus([FromForm]AddBusViewModel model)
         {
@@ -68,6 +71,7 @@ namespace BusCompanyManagementApplication.Controllers
 
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public IActionResult DeleteBus(Guid id)
         {
@@ -75,6 +79,7 @@ namespace BusCompanyManagementApplication.Controllers
             return Redirect(Url.Action("Index", "Bus"));
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public IActionResult UpdateBus([FromForm]UpdateBusViewModel model, Guid id)
         {

@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BusCompanyManagementApplication.Controllers
-{   //[Authorize]
+{   
     public class SearchTripController : Controller
     {
         private readonly TripsService tripsService;
@@ -43,24 +43,27 @@ namespace BusCompanyManagementApplication.Controllers
             }
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public IActionResult AddTrip()
         {
             return View();
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public IActionResult DeleteTrip()
         {
             return View();
         }
-        //[Authorize(Roles ="Admin")]
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public IActionResult UpdateTrip()
         {
             return View();
         }
 
+        [Authorize(Roles ="User, Administrator")]
         [HttpGet]
         public IActionResult BookSeat(Guid id)
         {            
@@ -72,6 +75,7 @@ namespace BusCompanyManagementApplication.Controllers
             return View(buyVm);
         } 
 
+        [Authorize(Roles ="User")]
         [HttpPost]
         public IActionResult BookSeat([FromForm] BuyTicketViewModel Vm) 
         {
@@ -84,7 +88,8 @@ namespace BusCompanyManagementApplication.Controllers
             }           
             return RedirectToAction("BookSeat", "SearchTrip");
         }
-        
+
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public IActionResult AddTrip([FromForm]AddTripViewModel model)
         {   
@@ -99,6 +104,7 @@ namespace BusCompanyManagementApplication.Controllers
             return Redirect(Url.Action("Index", "SearchTrip"));
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public IActionResult DeleteTrip(Guid id)
         {
@@ -106,6 +112,7 @@ namespace BusCompanyManagementApplication.Controllers
             return Redirect(Url.Action("Index", "SearchTrip"));
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public IActionResult UpdateTrip([FromForm]UpdateTripViewModel model, Guid id)
         {

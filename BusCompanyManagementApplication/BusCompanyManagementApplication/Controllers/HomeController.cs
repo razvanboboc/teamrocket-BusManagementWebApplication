@@ -23,8 +23,7 @@ namespace BusCompanyManagementApplication.Controllers
         {
             return View();
         }
-
-        //[Authorize(Roles ="User")]
+        
         public IActionResult Privacy()
         {
             return View();

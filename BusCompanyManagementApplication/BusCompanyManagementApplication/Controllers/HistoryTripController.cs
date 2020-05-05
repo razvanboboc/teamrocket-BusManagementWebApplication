@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BusCompanyManagementApplication.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="User")]
     public class HistoryTripController : Controller
     {
         private readonly UserManager<IdentityUser> userManager;
