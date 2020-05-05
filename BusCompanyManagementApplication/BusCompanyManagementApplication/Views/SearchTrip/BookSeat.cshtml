@@ -1,4 +1,5 @@
-﻿@{
+﻿@model BusCompanyManagementApplication.Models.TripModel.BuyTicketViewModel
+@{
     ViewData["Title"] = "selectASeatAndBuyATicket";
 }
 
@@ -54,9 +55,14 @@
     </div>
 </div>
 
-<a href="@Url.Action("Index", "HistoryTrip")"><input type="submit" value="Buy ticket" onclick="return buy();" class="btnn success" /></a>
-<input type="reset" value="Cancel" onclick="return cancel();">
 
+<!--<input type="reset" value="Cancel" onclick="return cancel();">-->
+<form asp-action="BookSeat">
+    <input type="hidden" asp-for="@Model.TripId" />
+    <input type="hidden" asp-for="@Model.SeatNumber" />
+    <input type="submit" value="Buy ticket" class="btn  btn-success" />
+    <a asp-action="Index"><input type="button" value="Back" class="btn btn-success" /></a>
+</form>
 
 <style type='text/css'>
 
@@ -113,12 +119,11 @@
             $(" .autocar-seats .seat").removeClass("active");
             $(this).toggleClass('active');
         }
+        $("#SeatNumber").text(previous_text);
+        $("#SeatNumber").val(previous_text);
 
     });
-
-    function buy() {
-
-    }
+        
 
     function cancel() {
         $(" .autocar-seats .seat").removeClass("active");

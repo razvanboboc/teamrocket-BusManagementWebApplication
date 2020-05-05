@@ -19,11 +19,9 @@ namespace BusCompanyManagementApplication.Controllers
 
         // GET: Bus
         public ActionResult Index(string id)
-        {
-            
+        {            
             try
-            {
-                
+            {                
                 var bus = busesService.GetBusByTripId(id);
 
                 return View(new BusViewModel { Bus = bus });
@@ -31,9 +29,10 @@ namespace BusCompanyManagementApplication.Controllers
             catch (Exception)
             {
                 return BadRequest("Invalid request received");
-            }
-                
+            }                
         }
+
+
 
         
         [HttpGet]

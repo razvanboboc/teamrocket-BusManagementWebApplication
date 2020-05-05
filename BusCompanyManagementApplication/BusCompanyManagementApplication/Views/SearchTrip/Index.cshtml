@@ -47,7 +47,7 @@
                     <a asp-action="DeleteTrip" asp-route-id="@item.TripId">Delete</a>
                     <a asp-action="UpdateTrip" asp-route-id="@item.TripId">Update</a>
                     <a asp-action="Index" asp-route-id="@item.TripId" asp-controller="Bus">Bus Info</a>
-                    <a asp-action="BookSeat" asp-controller="SearchTrip">
+                    <a asp-action="BookSeat" asp-route-id="@item.TripId" asp-controller="SearchTrip">
                         <input type="submit" class="btnn success" value="Book Seat" />
                     </a>
                 </td>

@@ -17,7 +17,7 @@ namespace BusCompanyManagement.DataAccess
 
         public PersonalTrip GetHistoryTripByUserId(Guid userId)
         {
-            var history = dbContext.PersonalTrips.Where(h => h.User.UserId == userId).SingleOrDefault();
+            var history = dbContext.PersonalTrips.Where(h => h.User.UserId == userId).FirstOrDefault();
             return history;
         }
 
@@ -25,7 +25,7 @@ namespace BusCompanyManagement.DataAccess
         {
             var personalTrip = dbContext.PersonalTrips.Include(pt=>pt.Trip)
                                                        .Include(pt => pt.User)
-                                                       .Where(t => t.PersonalTripId == personalTripId).SingleOrDefault();
+                                                       .Where(t => t.PersonalTripId == personalTripId).FirstOrDefault();
             return personalTrip.Trip;
         }
 

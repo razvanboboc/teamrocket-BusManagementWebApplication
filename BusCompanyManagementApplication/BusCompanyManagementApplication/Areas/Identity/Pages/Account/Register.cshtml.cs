@@ -94,10 +94,10 @@ namespace BusCompanyManagementApplication.Areas.Identity.Pages.Account
                     //    pageHandler: null,
                     //    values: new { area = "Identity", userId = user.Id, code = code },
                     //    protocol: Request.Scheme);
-                    //    _usersService.AddUser(user.Id, user.Email, user.PasswordHash);
                         
                     //await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                     //    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    _usersService.AddUser(user.Id, user.Email, user.PasswordHash);
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
