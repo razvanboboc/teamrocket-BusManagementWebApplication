@@ -42,8 +42,8 @@ namespace BusCompanyManagement.ApplicationLogic.Services
             {
                 throw new Exception("Invalid Guid Format");
             }
-
-            busRepository.Add(new Bus() { BusId = Guid.NewGuid(), BusBrand = busBrand, TotalSeats = totalSeats });
+            // GetTripByBusID
+            busRepository.Add(new Bus() { BusId = Guid.NewGuid(), BusBrand = busBrand, TotalSeats = totalSeats});
         }
 
         //Remove bus

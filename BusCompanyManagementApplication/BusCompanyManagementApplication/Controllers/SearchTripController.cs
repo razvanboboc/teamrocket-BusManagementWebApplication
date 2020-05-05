@@ -77,8 +77,12 @@ namespace BusCompanyManagementApplication.Controllers
         {
             var userId = userManager.GetUserId(User);
             var personalTrip = historyTripsService.GetPersonalTripByUserId(userId);
-            historyTripsService.AddTripInHistory(Vm.TripId.ToString(), personalTrip.PersonalTripId.ToString(), "", 122, Vm.SeatNumber, 0);
-            return RedirectToAction("Index", "HistoryTrip");
+            if(Vm.SeatNumber != -1)
+            {
+                historyTripsService.AddTripInHistory(Vm.TripId.ToString(), personalTrip.PersonalTripId.ToString(), "", 122, Vm.SeatNumber, 0);
+                return RedirectToAction("Index", "HistoryTrip");
+            }           
+            return RedirectToAction("BookSeat", "SearchTrip");
         }
         
         [HttpPost]

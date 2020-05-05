@@ -39,7 +39,7 @@ namespace BusCompanyManagement.ApplicationLogic.Services
             if (!Guid.TryParse(userId, out userIdGuid))
             {
                 throw new Exception("Invalid Guid Format");
-            }            
+            }
 
             var personaltrip = historyTripRepository.GetHistoryTripByUserId(userIdGuid);
             if (personaltrip == null)
@@ -92,7 +92,7 @@ namespace BusCompanyManagement.ApplicationLogic.Services
             {
                 throw new EntityNotFoundException(personalTripIdGuid);
             }
-            historyTripRepository.Add(new PersonalTrip() { PersonalTripId = Guid.NewGuid(), Status = status, TicketPrice = ticketPrice, SeatNumber = seatNumber, Rating = rating});
+            historyTripRepository.Add(new PersonalTrip() { PersonalTripId = Guid.NewGuid(), Status = status, TicketPrice = ticketPrice, SeatNumber = seatNumber, Rating = rating, User = user, Trip = trip});
         }
         //
         public void RemoveHistoryTrip(string userId, Guid personalTripId)

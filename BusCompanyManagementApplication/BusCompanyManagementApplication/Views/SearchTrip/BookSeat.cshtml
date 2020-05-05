@@ -60,9 +60,11 @@
 <form asp-action="BookSeat">
     <input type="hidden" asp-for="@Model.TripId" />
     <input type="hidden" asp-for="@Model.SeatNumber" />
-    <input type="submit" value="Buy ticket" class="btn  btn-success" />
-    <a asp-action="Index"><input type="button" value="Back" class="btn btn-success" /></a>
+    <input type="submit" value="Buy ticket" class="btn  btn-success" onclick="return buy()"/>
 </form>
+<div>
+    <input type="reset" value="Cancel" onclick="return cancel()" class="btn  btn-success" style="margin-left:600px;margin-top:-76px" /> 
+</div>
 
 <style type='text/css'>
 
@@ -109,23 +111,28 @@
         });
     });
 
-
+    var previous_text = "-1";
     $(' .autocar-seats .seat').on('click', function () {
-        var previous_text = $(this).text();
-        console.log(previous_text);
+         previous_text = $(this).text();
+        //console.log(previous_text);
         $(this).attr('data-before', previous_text);
         // alert($(this).css('backgroundColor'));
         if ($(this).css('backgroundColor') != "rgb(199, 30, 35)") {
             $(" .autocar-seats .seat").removeClass("active");
             $(this).toggleClass('active');
-        }
+        }       
         $("#SeatNumber").text(previous_text);
-        $("#SeatNumber").val(previous_text);
-
+        $("#SeatNumber").val(previous_text);  
     });
         
 
     function cancel() {
         $(" .autocar-seats .seat").removeClass("active");
+    }
+
+    function buy() {
+        if (previous_text == "-1") {
+            alert("Please select a seat first!");
+        }            
     }
 </script>
