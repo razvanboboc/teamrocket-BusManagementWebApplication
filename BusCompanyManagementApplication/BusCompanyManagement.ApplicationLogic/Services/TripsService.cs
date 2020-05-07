@@ -21,27 +21,36 @@ namespace BusCompanyManagement.ApplicationLogic.Services
            
         }
 
-        public Trip GetTripByArrival(string arrival)
+        public IEnumerable<Trip> GetTripsByArrival(string arrival)
         { 
             if (arrival == null)
             {
                 throw new Exception("Null string");
             }
 
-            return tripRepository.GetTripByArrival(arrival);
+            return tripRepository.GetTripsByArrival(arrival);
           
         }
 
-        public Trip GetTripByDestination(string destination)
+        public IEnumerable<Trip> GetTripsByDestination(string destination)
         {
             if (destination == null)
             {
                 throw new Exception("Null string");
             }
 
-            return tripRepository.GetTripByDestination(destination);
+            return tripRepository.GetTripsByDestination(destination);
         }
 
+        public IEnumerable<Trip> GetTripsAccordingToFilters(string arrival, string destination, DateTime arrivalTime)
+        {
+            if (arrival == null && destination == null && arrivalTime == null)
+            {
+                throw new Exception("Null parameters");
+            }
+
+            return tripRepository.GetTripsAccordingToFilters(arrival, destination, arrivalTime);
+        }
         public IEnumerable<Trip> GetTrips()
         {
             return tripRepository.GetTrips();

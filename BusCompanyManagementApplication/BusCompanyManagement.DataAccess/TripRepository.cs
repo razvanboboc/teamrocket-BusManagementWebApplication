@@ -21,16 +21,16 @@ namespace BusCompanyManagement.DataAccess
             return trip;
         }
 
-        public Trip GetTripByArrival(string arrival)
+        public IEnumerable<Trip> GetTripsByArrival(string arrival)
         {
-            var trip = dbContext.Trips.Where(t => t.Arrival == arrival).SingleOrDefault();
-            return trip;
+            var trips = dbContext.Trips.Where(t => t.Arrival == arrival).AsEnumerable();
+            return trips;
         }
 
-        public Trip GetTripByDestination(string destination)
+        public IEnumerable<Trip> GetTripsByDestination(string destination)
         {
-            var trip = dbContext.Trips.Where(t => t.Destination == destination).SingleOrDefault();
-            return trip;
+            var trips = dbContext.Trips.Where(t => t.Destination == destination).AsEnumerable();
+            return trips;
         }
 
 
@@ -40,5 +40,11 @@ namespace BusCompanyManagement.DataAccess
             return trips;
         }
 
+        public IEnumerable<Trip> GetTripsAccordingToFilters(string arrival, string destination, DateTime arrivalTime)
+        {
+            var trips = dbContext.Trips.Where(t => t.Arrival == arrival && t.Destination == destination 
+                                                                        && t.ArrivalTime.Date >= arrivalTime.Date).AsEnumerable();
+            return trips;
+        }
     }
 }
