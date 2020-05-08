@@ -29,11 +29,16 @@ namespace BusCompanyManagementApplication.Controllers
         }
 
         // GET: Bus
-        public ActionResult Index()
+        public ActionResult Index(string arrival, string destination, DateTime arrivalTime)
         {
-            try
+            if (arrival == null || destination == null || arrivalTime == null)
             {
                 var trips = tripsService.GetTrips();
+                return View(new TripViewModel { Trips = trips });
+            }
+            try
+            {
+                var trips = tripsService.GetTripsAccordingToFilters(arrival, destination, arrivalTime);
 
                 return View(new TripViewModel { Trips = trips });
             }

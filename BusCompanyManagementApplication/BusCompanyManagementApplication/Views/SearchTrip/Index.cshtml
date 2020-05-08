@@ -8,52 +8,86 @@
 <br />
 <a href='@Url.Action("AddTrip", "SearchTrip")'>Create Trip</a>
 <link rel="stylesheet" href="~/css/Button.css">
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayName("ArrivalTime")
-            </th>
-            <th>
-                @Html.DisplayName("DestinationTime")
-            </th>
-            <th>
-                @Html.DisplayName("Arrival")
-            </th>
-            <th>
-                @Html.DisplayName("Destination")
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Trips)
-        {
+<p>
+    @using (@Html.BeginForm("Index", "SearchTrip", FormMethod.Get))
+    {
+        <b>Search trips:</b>
+    <p>
+        <b>Arrival: </b> @Html.TextBox("Arrival", null, new { style = "color:black" })
+    </p>
+
+    <p>
+        <b>Destination: </b> @Html.TextBox("Destination", null, new { style = "color:black" })
+    </p>
+    
+
+    <p>
+        <label for="ArrivalTime"><b>ArrivalTime: </b></label>
+        <input type="date" id="arrivaltime" name="arrivaltime">
+    </p>
+
+    <input type="submit" value="search" />
+    <br />
+
+}
+
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(model => item.ArrivalTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.DestinationTime)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(model => item.Arrival)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.Destination)
-                </td>
-
-                <td>
-                    <a asp-action="DeleteTrip" asp-route-id="@item.TripId">Delete</a> |
-                    <a asp-action="UpdateTrip" asp-route-id="@item.TripId">Update</a> |
-                    <a asp-action="Index" asp-route-id="@item.TripId" asp-controller="Bus">Bus Info</a>
-                </td>
-                <td>
-                    <a asp-action="BookSeat" asp-route-id="@item.TripId" asp-controller="SearchTrip">
-                        <input type="submit" class="btnn success" value="Book Seat" />
-                    </a>
-                </td>
+                <th>
+                    @Html.DisplayName("ArrivalTime")
+                </th>
+                <th>
+                    @Html.DisplayName("DestinationTime")
+                </th>
+                <th>
+                    @Html.DisplayName("Arrival")
+                </th>
+                <th>
+                    @Html.DisplayName("Destination")
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @if (Model.Trips.Count() == 0)
+            {
+                <tr>
+                    <td colspan="4">
+                        No records match search criteria
+                    </td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var item in Model.Trips)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => item.ArrivalTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.DestinationTime)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => item.Arrival)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.Destination)
+                        </td>
+
+                        <td>
+                            <a asp-action="DeleteTrip" asp-route-id="@item.TripId">Delete</a> |
+                            <a asp-action="UpdateTrip" asp-route-id="@item.TripId">Update</a> |
+                            <a asp-action="Index" asp-route-id="@item.TripId" asp-controller="Bus">Bus Info</a>
+                        </td>
+                        <td>
+                            <a asp-action="BookSeat" asp-route-id="@item.TripId" asp-controller="SearchTrip">
+                                <input type="submit" class="btnn success" value="Book Seat" />
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
