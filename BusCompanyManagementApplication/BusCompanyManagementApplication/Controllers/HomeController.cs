@@ -7,23 +7,51 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BusCompanyManagementApplication.Models;
 using Microsoft.AspNetCore.Authorization;
+using BusCompanyManagementApplication.Models.AnnouncementModel;
+using BusCompanyManagement.ApplicationLogic.DataModel;
+using BusCompanyManagement.ApplicationLogic.Services;
 
 namespace BusCompanyManagementApplication.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly AnnouncementsService announcementsService;
+        public HomeController(ILogger<HomeController> logger, AnnouncementsService announcementsService)
         {
             _logger = logger;
+            this.announcementsService = announcementsService;
         }
 
-        public IActionResult Index()
+        //public IActionResult Index(IEnumerable<Announcement> announcements)
+        //{
+
+        //    announcements = announcementsService.GetAll();
+
+        //    if (announcements == null)
+        //    {
+        //        return View();
+        //    }
+        //    else
+        //    {
+        //        return View(new AnnouncementViewModel { Announcements = announcements });
+        //    }
+        //}
+
+        public ActionResult Index()
         {
-            return View();
+            try
+            {
+                var announcements = announcementsService.GetAll();
+
+                return View(new AnnouncementViewModel { Announcements = announcements });
+            }
+            catch (Exception)
+            {
+                return BadRequest("Invalid request received");
+            }
         }
-        
+    
         public IActionResult Privacy()
         {
             return View();

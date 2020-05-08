@@ -30,10 +30,10 @@ namespace BusCompanyManagementApplication.Controllers
 
         // GET: Bus
         public ActionResult Index(string arrival, string destination, DateTime arrivalTime)
-        {      
-            if(arrival == null || destination == null || arrivalTime == null)
+        {
+            if (arrival == null || destination == null || arrivalTime == null)
             {
-                var trips = tripsService.GetTrips();               
+                var trips = tripsService.GetTrips();
                 return View(new TripViewModel { Trips = trips });
             }
             try
