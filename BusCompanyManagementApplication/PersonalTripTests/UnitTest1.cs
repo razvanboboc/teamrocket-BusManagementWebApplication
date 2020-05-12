@@ -8,7 +8,7 @@ namespace PersonalTripTests
     public class UnitTest1
     {
         [TestMethod]
-        public void ValidateStatus()
+        public void ValidateChangeStatus()
         {
             var personalTrip1 = new PersonalTrip()
             {
@@ -17,26 +17,45 @@ namespace PersonalTripTests
                 TicketPrice = 132,
                 Status = "In progress"
             };
-            Assert.AreEqual(true, personalTrip1.IsStatusValid());
+            Assert.AreEqual("In progress", personalTrip1.changeStatus("Done"));
 
             var personalTrip2 = new PersonalTrip()
             {
                 PersonalTripId = Guid.NewGuid(),
                 Rating = 23,
                 TicketPrice = 132,
-                Status = "Completed"
+                Status = "In progress"
             };
-            Assert.AreEqual(true, personalTrip2.IsStatusValid());
+            Assert.AreEqual("Completed", personalTrip2.changeStatus("Completed"));
 
             var personalTrip3 = new PersonalTrip()
             {
                 PersonalTripId = Guid.NewGuid(),
                 Rating = 23,
                 TicketPrice = 132,
-                Status = "dadafa232as"
+                Status = "Completed"
             };
 
-            Assert.AreEqual(false, personalTrip3.IsStatusValid());
+            Assert.AreEqual("Completed", personalTrip3.changeStatus("Completed"));
+
+            var personalTrip4 = new PersonalTrip()
+            {
+                PersonalTripId = Guid.NewGuid(),
+                Rating = 23,
+                TicketPrice = 132,
+            };
+
+            Assert.AreEqual("Completed", personalTrip4.changeStatus("Completed"));
+
+            var personalTrip5 = new PersonalTrip()
+            {
+                PersonalTripId = Guid.NewGuid(),
+                Rating = 23,
+                TicketPrice = 132,
+            };
+
+            Assert.AreEqual(null, personalTrip5.changeStatus("Done"));
+
         }
 
         [TestMethod]
@@ -145,7 +164,7 @@ namespace PersonalTripTests
                     Destination = "Bucuresti",
                 }
             };
-            Assert.AreEqual("", personalTrip2.GetUserFirstNameByDestinatiton("Londra"));
+            Assert.AreEqual("Edison", personalTrip2.GetUserFirstNameByDestinatiton("Bucuresti"));
         }
     }
         

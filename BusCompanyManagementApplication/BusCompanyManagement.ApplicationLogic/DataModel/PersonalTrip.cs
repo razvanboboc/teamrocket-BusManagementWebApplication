@@ -22,13 +22,13 @@ namespace BusCompanyManagement.ApplicationLogic.DataModel
             
         }
         
-        public bool IsStatusValid()
+        public string changeStatus(string status)
         {
-            if (Status.Equals("In progress") || Status.Equals("Completed"))
+            if (status.Equals("In progress") || status.Equals("Completed") || status == null)
             {
-                return true;
+                Status = status;
             }
-            return false;
+            return Status;
         }
 
         public int changeRating(int rating)
