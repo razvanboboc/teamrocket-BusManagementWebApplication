@@ -4,7 +4,7 @@
 }
 
 <link rel="stylesheet" href="~/css/Button.css">
-<p>
+<div style="text-align: center">
     @using (@Html.BeginForm("Index", "SearchTrip", FormMethod.Get))
     {
         <h3>Filter trips</h3> <br />
@@ -22,13 +22,11 @@
         <input type="date" id="arrivaltime" name="arrivaltime">
     </p>
 
-    <input type="submit" class="btnn success" value="Search" />
-    <br />
-    <br />
-    <br />
-
+    <input type="submit" class="btn btn-info" value="Search" />
+    <br /><br /><br />
 }
-<a href='@Url.Action("AddTrip", "SearchTrip")'>Create Trip</a> <br />
+</div>
+<a href='@Url.Action("AddTrip", "SearchTrip")'>Add Trip</a> <br />
     <table class="table">
         <thead>
             <tr>
@@ -43,6 +41,10 @@
                 </th>
                 <th>
                     @Html.DisplayName("Destination")
+                </th>
+                <th>
+                </th>
+                <th>
                 </th>
             </tr>
         </thead>
@@ -77,11 +79,11 @@
                         <td>
                             <a asp-action="DeleteTrip" asp-route-id="@item.TripId">Delete</a> |
                             <a asp-action="UpdateTrip" asp-route-id="@item.TripId">Update</a> |
-                            <a asp-action="Index" asp-route-id="@item.TripId" asp-controller="Bus">Bus Info</a>
+                            <a asp-action="Index" asp-route-id="@item.TripId" asp-controller="Bus">Bus Info</a>                            
                         </td>
                         <td>
                             <a asp-action="BookSeat" asp-route-id="@item.TripId" asp-controller="SearchTrip">
-                                <input type="submit" class="btnn success" value="Book Seat" />
+                                <input type="submit" class="btn btn-info" value="Book Seat" />
                             </a>
                         </td>
                     </tr>

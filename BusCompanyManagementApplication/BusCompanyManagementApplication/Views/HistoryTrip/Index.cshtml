@@ -4,7 +4,7 @@
 }
 <html>
 <body>
-    <h1>History trips</h1>
+    <h1 style="text-align: center">History trips</h1>
     <br />
     <style>
         .checked {
@@ -14,7 +14,7 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="~/css/Button.css">
+    
     <table class="table" BORDERCOLOR=white>
         <thead>
             <tr>
@@ -92,14 +92,14 @@
                              //save changes in the database
                          }
                                 </script>
-                                <span class="fa fa-star checked"></span>
-                                <button type="submit">Submit</button>
+                                <span class="fa fa-star checked"></span><br />                                
+                                <button class="btn-warning" type="submit">Rate</button>
                             </form>
 
                         </td>
                         <td>
                             <a asp-action="DeleteTripHistory" asp-route-id="@item.PersonalTripId">
-                                <input type="submit" class="btnn success" value="Delete" />
+                                <input type="submit" class="btn btn-dark" value="Delete" />
                             </a>
                         </td>
                     </tr>
@@ -133,7 +133,7 @@
                         </td>
                         <td>
                             <a asp-action="DeleteTripHistory" asp-route-id="@item.PersonalTripId">
-                                <input type="submit" class="btnn success" value="Delete" />
+                                <input type="submit" class="btn btn-dark" value="Delete" />
                             </a>
                         </td>
                     </tr>

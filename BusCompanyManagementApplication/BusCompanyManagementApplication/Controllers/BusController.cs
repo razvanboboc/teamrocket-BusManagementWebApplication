@@ -57,14 +57,14 @@ namespace BusCompanyManagementApplication.Controllers
 
         [Authorize(Roles = "Administrator")]
         [HttpPost]
-        public IActionResult AddBus([FromForm]AddBusViewModel model)
+        public IActionResult AddBus([FromForm]AddBusViewModel model, Guid id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            busesService.AddBus("b9f7ba98-7f0a-4201-89ae-ae8195d869ee", 
+            busesService.AddBus(id.ToString(), 
                             model.BusBrand, 
                             model.TotalSeats);
             return Redirect(Url.Action("Index", "Bus"));

@@ -42,7 +42,7 @@ namespace BusCompanyManagement.DataAccess
 
         public IEnumerable<Trip> GetTripsAccordingToFilters(string arrival, string destination, DateTime arrivalTime)
         {
-            var trips = dbContext.Trips.Where(t => t.Arrival == arrival && t.Destination == destination 
+            var trips = dbContext.Trips.Where(t => t.Arrival == arrival && t.Destination == destination
                                                                         && t.ArrivalTime.Date >= arrivalTime.Date).AsEnumerable();
             return trips;
         }

@@ -30,11 +30,11 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
-        width: 27%;
+        width: 35%;
     }
 </style>
 <img src="~/Images/logo.png" alt="Sample Photo" class="center" />
-<a href='@Url.Action("AddAnnouncement", "Home")'>New Announcement</a>
+<a href='@Url.Action("AddAnnouncement", "Home")'>Add Announcement</a><br />
 <div class="c">
     <table class="tableFixHead" border="1">
         <thead>
@@ -68,23 +68,13 @@
                     <tr>
                         <td>
                             @Html.DisplayFor(model => item.Title)
-                        </td>
-                       
+                        </td>                       
                         <td>
                             @Html.DisplayFor(model => item.AddedTime)
                         </td>
-
-
-                        <td>
-                                @*<a asp-action="DeleteTrip" asp-route-id="@item.TripId">Delete</a> |
-                                <a asp-action="UpdateTrip" asp-route-id="@item.TripId">Update</a>*@ 
-                                <a asp-action="ViewAnnouncement" asp-route-id="@item.AnnouncementId" asp-controller="Home">View</a>
-                         </td>
-                            @*<td>
-                                <a asp-action="BookSeat" asp-route-id="@item.TripId" asp-controller="SearchTrip">
-                                    <input type="submit" class="btnn success" value="Book Seat" />
-                                </a>
-                            </td>*@
+                        <td>                               
+                            <a asp-action="ViewAnnouncement" asp-route-id="@item.AnnouncementId" asp-controller="Home">View</a>
+                        </td>                            
                     </tr>
                 }
             }
