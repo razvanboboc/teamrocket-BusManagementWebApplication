@@ -8,5 +8,7 @@ namespace BusCompanyManagement.ApplicationLogic.Abstractions
     public interface IAnnouncementRepository : IRepository<Announcement>
     {
         Announcement GetAnnouncementById(Guid Id);
+
+       
     }
 }

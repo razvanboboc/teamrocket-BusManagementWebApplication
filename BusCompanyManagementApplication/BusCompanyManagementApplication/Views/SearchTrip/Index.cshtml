@@ -3,34 +3,32 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Trip</h1>
-
-<br />
-<a href='@Url.Action("AddTrip", "SearchTrip")'>Create Trip</a>
 <link rel="stylesheet" href="~/css/Button.css">
 <p>
     @using (@Html.BeginForm("Index", "SearchTrip", FormMethod.Get))
     {
-        <b>Search trips:</b>
+        <h3>Filter trips</h3> <br />
     <p>
-        <b>Arrival: </b> @Html.TextBox("Arrival", null, new { style = "color:black" })
+        <b>Arrival&emsp;&emsp;&ensp;</b> @Html.TextBox("Arrival", null, new { style = "color:black" })
     </p>
 
     <p>
-        <b>Destination: </b> @Html.TextBox("Destination", null, new { style = "color:black" })
+        <b>Destination</b> @Html.TextBox("Destination", null, new { style = "color:black" })
     </p>
-    
+
 
     <p>
-        <label for="ArrivalTime"><b>ArrivalTime: </b></label>
+        <label for="ArrivalTime"><b>Arrival Time  </b></label>
         <input type="date" id="arrivaltime" name="arrivaltime">
     </p>
 
-    <input type="submit" value="search" />
+    <input type="submit" class="btnn success" value="Search" />
+    <br />
+    <br />
     <br />
 
 }
-
+<a href='@Url.Action("AddTrip", "SearchTrip")'>Create Trip</a> <br />
     <table class="table">
         <thead>
             <tr>
