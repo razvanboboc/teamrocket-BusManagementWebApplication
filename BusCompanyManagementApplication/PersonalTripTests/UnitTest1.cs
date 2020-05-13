@@ -17,7 +17,8 @@ namespace PersonalTripTests
                 TicketPrice = 132,
                 Status = "In progress"
             };
-            Assert.AreEqual("In progress", personalTrip1.changeStatus("Done"));
+            personalTrip1.changeStatus("Done");
+            Assert.AreEqual("In progress", personalTrip1.Status);
 
             var personalTrip2 = new PersonalTrip()
             {
@@ -26,7 +27,8 @@ namespace PersonalTripTests
                 TicketPrice = 132,
                 Status = "In progress"
             };
-            Assert.AreEqual("Completed", personalTrip2.changeStatus("Completed"));
+            personalTrip2.changeStatus("Completed");
+            Assert.AreEqual("Completed", personalTrip2.Status);
 
             var personalTrip3 = new PersonalTrip()
             {
@@ -36,7 +38,9 @@ namespace PersonalTripTests
                 Status = "Completed"
             };
 
-            Assert.AreEqual("Completed", personalTrip3.changeStatus("Completed"));
+            personalTrip3.changeStatus("Completed");
+
+            Assert.AreEqual("Completed", personalTrip3.Status);
 
             var personalTrip4 = new PersonalTrip()
             {
@@ -45,7 +49,9 @@ namespace PersonalTripTests
                 TicketPrice = 132,
             };
 
-            Assert.AreEqual("Completed", personalTrip4.changeStatus("Completed"));
+            personalTrip4.changeStatus("Completed");
+
+            Assert.AreEqual("Completed", personalTrip4.Status);
 
             var personalTrip5 = new PersonalTrip()
             {
@@ -53,8 +59,9 @@ namespace PersonalTripTests
                 Rating = 23,
                 TicketPrice = 132,
             };
+            personalTrip5.changeStatus("Done"); 
 
-            Assert.AreEqual(null, personalTrip5.changeStatus("Done"));
+            Assert.AreEqual(null, personalTrip5.Status);
 
         }
 
@@ -68,7 +75,8 @@ namespace PersonalTripTests
                 TicketPrice = 132,
                 Status = "In progress"
             };
-            Assert.AreEqual(3, personalTrip1.changeRating(9999));
+            personalTrip1.changeRating(9999);
+            Assert.AreEqual(3, personalTrip1.Rating);
 
             var personalTrip2 = new PersonalTrip()
             {
@@ -77,7 +85,8 @@ namespace PersonalTripTests
                 TicketPrice = 132,
                 Status = "Completed"
             };
-            Assert.AreEqual(3, personalTrip2.changeRating(-9999));
+            personalTrip2.changeRating(-9999);
+            Assert.AreEqual(3, personalTrip2.Rating);
 
             var personalTrip3 = new PersonalTrip()
             {
@@ -87,7 +96,8 @@ namespace PersonalTripTests
                 Status = "dadafa232as"
             };
 
-            Assert.AreEqual(0, personalTrip3.changeRating(0));
+            personalTrip3.changeRating(0);
+            Assert.AreEqual(0, personalTrip3.Rating);
 
             var personalTrip4 = new PersonalTrip()
             {
@@ -96,8 +106,8 @@ namespace PersonalTripTests
                 TicketPrice = 132,
                 Status = "dadafa232as"
             };
-
-            Assert.AreEqual(5, personalTrip4.changeRating(5));
+            personalTrip4.changeRating(5);
+            Assert.AreEqual(5, personalTrip4.Rating);
 
             var personalTrip5 = new PersonalTrip()
             {
@@ -106,8 +116,8 @@ namespace PersonalTripTests
                 TicketPrice = 132,
                 Status = "dadafa232as"
             };
-
-            Assert.AreEqual(2, personalTrip5.changeRating(2));
+            personalTrip5.changeRating(2);
+            Assert.AreEqual(2, personalTrip5.Rating);
 
 
             var personalTrip6 = new PersonalTrip()
@@ -117,8 +127,8 @@ namespace PersonalTripTests
                 TicketPrice = 132,
                 Status = "dadafa232as"
             };
-
-            Assert.AreEqual(2, personalTrip6.changeRating(2));
+            personalTrip6.changeRating(2);
+            Assert.AreEqual(2, personalTrip6.Rating);
         }
 
         [TestMethod]
