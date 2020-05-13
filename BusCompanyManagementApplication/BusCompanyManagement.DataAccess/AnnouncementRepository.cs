@@ -20,6 +20,6 @@ namespace BusCompanyManagement.DataAccess
             return announcement;
         }
 
-       
+        
     }
 }
