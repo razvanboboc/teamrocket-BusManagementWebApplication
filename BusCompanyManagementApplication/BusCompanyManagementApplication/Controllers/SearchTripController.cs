@@ -85,10 +85,10 @@ namespace BusCompanyManagementApplication.Controllers
         public IActionResult BookSeat([FromForm] BuyTicketViewModel Vm) 
         {
             var userId = userManager.GetUserId(User);
-            var personalTrip = historyTripsService.GetPersonalTripByUserId(userId);
+           // var personalTrip = historyTripsService.GetPersonalTripByUserId(userId);
             if(Vm.SeatNumber != -1)
             {
-                historyTripsService.AddTripInHistory(Vm.TripId.ToString(), personalTrip.PersonalTripId.ToString(), "", 122, Vm.SeatNumber, 0);
+                historyTripsService.AddTripInHistory(Vm.TripId.ToString(), userId, "", 122, Vm.SeatNumber, 0);
                 return RedirectToAction("Index", "HistoryTrip");
             }           
             return RedirectToAction("BookSeat", "SearchTrip");

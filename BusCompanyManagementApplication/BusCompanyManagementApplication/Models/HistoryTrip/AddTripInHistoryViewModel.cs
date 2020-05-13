@@ -11,5 +11,6 @@ namespace BusCompanyManagementApplication.Models.HistoryTrip
         public int TicketPrice { get; set; }
         public int SeatNumber { get; set; }
         public int Rating { get; set; }
+        public Guid TripId { get; set; }
     }
 }

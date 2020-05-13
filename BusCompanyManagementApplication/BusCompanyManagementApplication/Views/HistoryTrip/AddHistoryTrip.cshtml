@@ -7,11 +7,13 @@
 <h1>Add History Trip</h1>
 
 <form asp-action="AddTripInHistory" method="post">
-
+    <input type="hidden" asp-for="TripId" />
     <div class="row">
+
         <div class="col-2">
             Status
         </div>
+
         <div class="col-10">
             <input class="form-control" type="text" asp-for="Status" />
         </div>
