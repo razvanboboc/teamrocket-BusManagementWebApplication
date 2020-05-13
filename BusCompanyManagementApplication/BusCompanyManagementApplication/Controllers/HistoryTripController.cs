@@ -39,9 +39,10 @@ namespace BusCompanyManagementApplication.Controllers
         }
        
         [HttpGet]
-        public IActionResult AddTripInHistory()
+        public IActionResult AddTripInHistory(Guid id)
         {
-            return View();
+            AddTripInHistoryViewModel vm = new AddTripInHistoryViewModel() { TripId = id };
+            return View(vm);
         }
 
         [HttpGet]
@@ -61,12 +62,9 @@ namespace BusCompanyManagementApplication.Controllers
             }
             
             var userId = userManager.GetUserId(User);
-            var personalTrips = historyTripsService.GetTripHistoryByUserId(userId);
-            var personalTrip = personalTrips.FirstOrDefault();
+            
 
-            var trip = historyTripsService.GetTripByPersonalTripId(personalTrip.PersonalTripId.ToString());
-
-            historyTripsService.AddTripInHistory(trip.TripId.ToString(), personalTrip.PersonalTripId.ToString(), model.Status, model.TicketPrice, model.SeatNumber, model.Rating);
+            historyTripsService.AddTripInHistory(model.TripId.ToString(), userId, model.Status, model.TicketPrice, model.SeatNumber, model.Rating);
             return Redirect(Url.Action("Index", "HistoryTrip"));            
         }
 

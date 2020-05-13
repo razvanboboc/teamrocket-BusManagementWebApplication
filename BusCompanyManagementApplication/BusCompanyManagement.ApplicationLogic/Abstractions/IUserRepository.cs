@@ -12,6 +12,8 @@ namespace BusCompanyManagement.ApplicationLogic.Abstractions
         User GetUserByEmailAdress(String emailAdress); //remove
 
         User GetUserByFirstAndLastName(String firstName, String lastName); //remove
+
+        User GetUserById(Guid userId);
          
     }
 }
