@@ -13,6 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BusCompanyManagement.DataAccess;
+using BusCompanyManagement.ApplicationLogic.Abstractions;
+using BusCompanyManagement.ApplicationLogic.Services;
 
 namespace BusCompanyManagementApplication
 {
@@ -38,9 +40,25 @@ namespace BusCompanyManagementApplication
                 );
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                    .AddRoles<IdentityRole>()
+                    .AddEntityFrameworkStores<ApplicationDbContext>(); 
+
+            services.AddScoped<IHistoryTripRepository, HistoryTripRepository>();
+            services.AddScoped<ITripRepository, TripRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IBusRepository, BusRepository>();
+            services.AddScoped<IAnnouncementRepository, AnnouncementRepository>();
+            
+            services.AddScoped<UsersService>();
+            services.AddScoped<HistoryTripsService>();
+                        
+            services.AddScoped<BusesService>();
+            services.AddScoped<TripsService>();
+            services.AddScoped<AnnouncementsService>();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
+                    
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,93 @@
+﻿@model BusCompanyManagementApplication.Models.TripModel.TripViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="~/css/Button.css">
+<div style="text-align: center">
+    @using (@Html.BeginForm("Index", "SearchTrip", FormMethod.Get))
+    {
+        <h3>Filter trips</h3> <br />
+    <p>
+        <b>Arrival&emsp;&emsp;&ensp;</b> @Html.TextBox("Arrival", null, new { style = "color:black" })
+    </p>
+
+    <p>
+        <b>Destination</b> @Html.TextBox("Destination", null, new { style = "color:black" })
+    </p>
+
+
+    <p>
+        <label for="ArrivalTime"><b>Arrival Time  </b></label>
+        <input type="date" id="arrivaltime" name="arrivaltime">
+    </p>
+
+    <input type="submit" class="btn btn-info" value="Search" />
+    <br /><br /><br />
+}
+</div>
+<a href='@Url.Action("AddTrip", "SearchTrip")'>Add Trip</a> <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("ArrivalTime")
+                </th>
+                <th>
+                    @Html.DisplayName("DestinationTime")
+                </th>
+                <th>
+                    @Html.DisplayName("Arrival")
+                </th>
+                <th>
+                    @Html.DisplayName("Destination")
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Trips.Count() == 0)
+            {
+                <tr>
+                    <td colspan="4">
+                        No records match search criteria
+                    </td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var item in Model.Trips)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => item.ArrivalTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.DestinationTime)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => item.Arrival)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.Destination)
+                        </td>
+
+                        <td>
+                            <a asp-action="DeleteTrip" asp-route-id="@item.TripId">Delete</a> |
+                            <a asp-action="UpdateTrip" asp-route-id="@item.TripId">Update</a> |
+                            <a asp-action="Index" asp-route-id="@item.TripId" asp-controller="Bus">Bus Info</a>                            
+                        </td>
+                        <td>
+                            <a asp-action="BookSeat" asp-route-id="@item.TripId" asp-controller="SearchTrip">
+                                <input type="submit" class="btn btn-info" value="Book Seat" />
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>

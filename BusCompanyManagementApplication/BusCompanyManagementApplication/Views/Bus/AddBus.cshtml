@@ -1,0 +1,33 @@
+﻿@model BusCompanyManagementApplication.Models.Buses.AddBusViewModel
+@{
+    ViewData["Title"] = "AddBus";
+}
+<h1>Add Bus</h1>
+    <form asp-action="AddBus" method="post">
+
+        <div class="row">
+            <div class="col-2">
+                Bus Brand
+            </div>
+            <div class="col-10">
+                <input class="form-control" type="text" asp-for="BusBrand" />
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-2">
+                Total Seats
+            </div>
+            <div class="col-10">
+                <input class="form-control" type="number" asp-for="TotalSeats" />
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-6"></div>
+            <div class="col-2">
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+        </div>
+    </form>
+

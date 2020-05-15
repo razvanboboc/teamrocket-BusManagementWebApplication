@@ -30,10 +30,8 @@ namespace BusCompanyManagement.DataAccess
                 .WithMany(c => c.StoppingPoints)
                 .HasForeignKey(bc => bc.StopId);
             //one-to-one PersonalTrip-Trip
-            modelBuilder.Entity<PersonalTrip>()
-                .HasOne(a => a.Trip)
-                .WithOne(b => b.PersonalTrip)
-                .HasForeignKey<PersonalTrip>(b => b.PersonalTripId);
+           // modelBuilder.Entity<PersonalTrip>().HasOne<Trip>(pt => pt.Trip).WithMany<PersonalTrip>().HasForeignKey(pt => pt.Trip);
+           // modelBuilder.Entity<Trip>().HasMany<PersonalTrip>();
             //one-to-many Trip-Bus
             modelBuilder.Entity<Bus>()
                 .HasMany(c => c.Trips)

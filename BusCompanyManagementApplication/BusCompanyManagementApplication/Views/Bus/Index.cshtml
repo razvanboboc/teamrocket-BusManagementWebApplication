@@ -1,0 +1,50 @@
+﻿
+@model BusCompanyManagementApplication.Models.Buses.BusViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Bus</h1>
+
+<br />
+<a href='@Url.Action("AddBus", "Bus")'>Add Bus</a>
+@if (Model != null && Model.Bus != null)
+{
+
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Bus Brand")
+            </th>
+            <th>
+                @Html.DisplayName("Total Seats")
+            </th> 
+        </tr>
+    </thead>
+    <tbody> 
+        
+        <tr>
+            <td>
+                @Model.Bus.BusBrand
+            </td>
+            <td>
+                @Model.Bus.TotalSeats
+            </td>         
+            <td>
+                <a asp-action="DeleteBus" asp-route-id="@Model.Bus.BusId">Delete</a>
+                <a asp-action="UpdateBus" asp-route-id="@Model.Bus.BusId">Update</a>
+            </td>
+        </tr>        
+    </tbody>
+</table>
+}
+else
+{
+
+    <div>
+        No bus available for this trip.
+    </div>
+}

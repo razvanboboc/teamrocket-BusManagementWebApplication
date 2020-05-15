@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace BusCompanyManagement.ApplicationLogic.DataModel
-{
+{   
     public class User
     {
         public Guid UserId { get; set; }
-
+        
         public string EmailAdress { get; set; }
         public string Password { get; set; }
 

@@ -1,0 +1,15 @@
+﻿@model BusCompanyManagementApplication.Models.AnnouncementModel.ViewAnnouncementViewModel
+@{
+    ViewData["Title"] = "ViewAnnouncement";
+}
+
+
+
+<h2 style="text-align:center">@Model.Announcement.Title</h2> <br /> <br />
+
+<p>@Model.Announcement.Content</p> <br />
+
+<p>Posted at @Model.Announcement.AddedTime</p>
+
+<a href='@Url.Action("Index", "Home")'>Back</a><br />
+

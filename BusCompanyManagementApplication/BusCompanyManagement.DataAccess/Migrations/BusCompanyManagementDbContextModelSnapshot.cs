@@ -104,6 +104,7 @@ namespace BusCompanyManagement.DataAccess.Migrations
             modelBuilder.Entity("BusCompanyManagement.ApplicationLogic.DataModel.PersonalTrip", b =>
                 {
                     b.Property<Guid>("PersonalTripId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Rating")
@@ -118,10 +119,15 @@ namespace BusCompanyManagement.DataAccess.Migrations
                     b.Property<int>("TicketPrice")
                         .HasColumnType("int");
 
+                    b.Property<Guid?>("TripId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("PersonalTripId");
+
+                    b.HasIndex("TripId");
 
                     b.HasIndex("UserId");
 
@@ -184,9 +190,6 @@ namespace BusCompanyManagement.DataAccess.Migrations
                     b.Property<DateTime>("DestinationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("PersonalTripId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("TripId");
 
                     b.HasIndex("BusId");
@@ -239,10 +242,8 @@ namespace BusCompanyManagement.DataAccess.Migrations
             modelBuilder.Entity("BusCompanyManagement.ApplicationLogic.DataModel.PersonalTrip", b =>
                 {
                     b.HasOne("BusCompanyManagement.ApplicationLogic.DataModel.Trip", "Trip")
-                        .WithOne("PersonalTrip")
-                        .HasForeignKey("BusCompanyManagement.ApplicationLogic.DataModel.PersonalTrip", "PersonalTripId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("TripId");
 
                     b.HasOne("BusCompanyManagement.ApplicationLogic.DataModel.User", "User")
                         .WithMany("PersonalTrip")

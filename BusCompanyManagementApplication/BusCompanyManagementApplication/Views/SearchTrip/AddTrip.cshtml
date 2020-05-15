@@ -1,0 +1,42 @@
+﻿@model BusCompanyManagementApplication.Models.TripModel.AddTripViewModel
+@{
+    ViewData["Title"] = "AddTrip";
+}
+
+    <form asp-action="AddTrip" method="post">
+
+        <div class="row">
+            <div class="col-2">
+            Arrival
+            </div>
+            <div class="col-10">
+                <input class="form-control" type="text" asp-for="Arrival " />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-2">
+            Destination
+            </div>
+            <div class="col-10">
+                <input class="form-control" type="text" asp-for="Destination"> 
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <label for="ArrivalTime"> Arrival time:&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label>
+            <input type="datetime-local" id="arrivaltime" name="arrivaltime">
+        </div>
+        <br />
+        <div class="row">
+            <label for="DestinationTime">  Destination time: &ensp;&emsp;&emsp; &emsp;&emsp;</label>
+            <input type="datetime-local" id="destinationtime" name="destinationtime">
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-10"></div>
+            <div class="col-2">
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+        </div>
+    </form>
