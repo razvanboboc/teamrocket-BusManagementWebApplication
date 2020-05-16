@@ -41,7 +41,7 @@ namespace BusCompanyManagement.ApplicationLogic.Services
                 throw new Exception("Invalid Guid Format");
             }
 
-            var personaltrip = historyTripRepository.GetHistoryTripByUserId(userIdGuid);
+            var personaltrip = historyTripRepository.GetPersonalTripByUserId(userIdGuid);
             if (personaltrip == null)
             {
                 throw new EntityNotFoundException(userIdGuid);

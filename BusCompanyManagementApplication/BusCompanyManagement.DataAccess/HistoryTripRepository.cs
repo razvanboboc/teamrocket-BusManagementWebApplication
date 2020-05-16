@@ -15,7 +15,7 @@ namespace BusCompanyManagement.DataAccess
 
         }
 
-        public PersonalTrip GetHistoryTripByUserId(Guid userId)
+        public PersonalTrip GetPersonalTripByUserId(Guid userId)
         {
             var history = dbContext.PersonalTrips
                                                 .Include(pt => pt.User)
