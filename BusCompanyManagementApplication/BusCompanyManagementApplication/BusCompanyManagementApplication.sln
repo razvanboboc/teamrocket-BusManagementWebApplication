@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusCompanyManagement.Applic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusCompanyManagement.DataAccess", "..\BusCompanyManagement.DataAccess\BusCompanyManagement.DataAccess.csproj", "{2A2373AF-DE8E-4404-8231-E0015F492380}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalTripTests", "..\PersonalTripTests\PersonalTripTests.csproj", "{74E3640B-6460-44E4-A15E-C0B1F4F68B1B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "..\PersonalTripTests\UnitTests.csproj", "{74E3640B-6460-44E4-A15E-C0B1F4F68B1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

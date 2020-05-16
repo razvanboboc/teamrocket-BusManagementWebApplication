@@ -2,10 +2,10 @@ using BusCompanyManagement.ApplicationLogic.DataModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace PersonalTripTests
+namespace UnitTests
 {
     [TestClass]
-    public class UnitTest1
+    public class PersoanlTripUnitTests
     {
         [TestMethod]
         public void ValidateChangeStatus()

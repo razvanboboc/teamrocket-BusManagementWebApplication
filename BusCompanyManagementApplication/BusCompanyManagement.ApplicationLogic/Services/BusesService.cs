@@ -17,6 +17,7 @@ namespace BusCompanyManagement.ApplicationLogic.Services
             this.busRepository = busRepository;
             this.tripRepository = tripRepository;
         }
+        
         public Bus GetBusByTripId(string tripId)
         {
             Guid tripIdGuid = Guid.Empty;
@@ -26,6 +27,17 @@ namespace BusCompanyManagement.ApplicationLogic.Services
             }
          
             return busRepository.GetBusByTripId(tripIdGuid);
+        }
+
+        public Bus GetBusByBusId(string busId)
+        {
+            Guid busIdGuid = Guid.Empty;
+            if (!Guid.TryParse(busId, out busIdGuid))
+            {
+                throw new Exception("Invalid Guid Format");
+            }
+
+            return busRepository.GetBusByBusId(busIdGuid);
         }
 
 
