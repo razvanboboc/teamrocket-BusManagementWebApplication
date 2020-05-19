@@ -207,31 +207,31 @@ namespace UnitTests.Services
             Assert.IsNotNull(trips);
         }
 
-        //[TestMethod]
-        //public void AddTrip_ValidData_Return_OkResult()
-        //{
-        //    //Arrange
-        //    Exception throwException = null;
-        //    var tripService = new TripsService(busRepoMock.Object, tripRepoMock.Object);
-        //    var tripsThatWereCreated = new List<Trip>();
-        //    var newTrip = new Trip { Arrival = "Craiova", Destination = "Gandacesti" };
-        //    tripRepoMock.Setup(r => r.Add(newTrip))
-        //                .Callback((Trip newTrip) => tripsThatWereCreated.Add(newTrip));
-        //    //Act
-        //    try
-        //    {
-        //        tripService.AddTrip("Craiova", "Gandacesti", DateTime.Now, DateTime.Now);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throwException = e;
-        //    }
+        [TestMethod]
+        public void AddTrip_ValidData_Return_OkResult()
+        {
+            //Arrange
+            Exception throwException = null;
+            var tripService = new TripsService(busRepoMock.Object, tripRepoMock.Object);
+            var tripsThatWereCreated = new List<Trip>();
+            var newTrip = new Trip { Arrival = "Gandacesti", Destination = "Craiova" };
+            tripRepoMock.Setup(r => r.Add(It.IsAny<Trip>()))
+                        .Callback((Trip newTrip) => tripsThatWereCreated.Add(newTrip));
+            //Act
+            try
+            {
+                tripService.AddTrip("Craiova", "Gandacesti", DateTime.Now, DateTime.Now);
+            }
+            catch (Exception e)
+            {
+                throwException = e;
+            }
 
-        //    var totalTrips = tripRepoMock.Object.GetTrips();
-        //    // Asserts
-        //    Assert.AreEqual(4, totalTrips);
-        //    //Assert.AreEqual("Craiova", tripsThatWereCreated.First().Arrival);
-        //}
+            
+            // Asserts
+            Assert.AreEqual(1, tripsThatWereCreated.Count());
+            Assert.AreEqual("Craiova", tripsThatWereCreated.First().Destination);
+        }
 
     }
 
