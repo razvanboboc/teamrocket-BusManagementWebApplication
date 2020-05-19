@@ -40,10 +40,15 @@ namespace BusCompanyManagement.DataAccess
             return trips;
         }
 
+        public IEnumerable<Trip> GetTripsByBusId(Guid busId)
+        {
+            return dbContext.Trips.Where(t => t.Bus.BusId == busId).AsEnumerable();
+            
+        }
         public IEnumerable<Trip> GetTripsAccordingToFilters(string arrival, string destination, DateTime arrivalTime)
         {
             var trips = dbContext.Trips.Where(t => t.Arrival == arrival && t.Destination == destination
-                                                                        && t.ArrivalTime.Date >= arrivalTime.Date).AsEnumerable();
+                                                                        && t.ArrivalTime.Date == arrivalTime.Date).AsEnumerable();
             return trips;
         }
     }

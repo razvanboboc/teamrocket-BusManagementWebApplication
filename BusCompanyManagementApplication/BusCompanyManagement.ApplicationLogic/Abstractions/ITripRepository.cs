@@ -10,6 +10,7 @@ namespace BusCompanyManagement.ApplicationLogic.Abstractions
         Trip GetTripBy(Guid tripId);
         IEnumerable<Trip> GetTripsByDestination(string destination); 
         IEnumerable<Trip> GetTripsByArrival(string arrival);
+        IEnumerable<Trip> GetTripsByBusId(Guid busId);
 
         IEnumerable<Trip> GetTripsAccordingToFilters(string arrival, string destination, DateTime arrivalTime);
         IEnumerable<Trip> GetTrips();

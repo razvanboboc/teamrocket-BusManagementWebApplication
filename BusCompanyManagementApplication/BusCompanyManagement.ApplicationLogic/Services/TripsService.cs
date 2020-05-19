@@ -41,7 +41,22 @@ namespace BusCompanyManagement.ApplicationLogic.Services
 
             return tripRepository.GetTripsByDestination(destination);
         }
+        public IEnumerable<Trip> GetTripsByBusId(string busId)
+        {
+            Guid busIdGuid = Guid.Empty;
+            if (!Guid.TryParse(busId, out busIdGuid))
+            {
+                throw new Exception("Invalid Guid Format");
+            }
 
+            IEnumerable<Trip> trips = tripRepository.GetTripsByBusId(busIdGuid);
+
+            if (trips.Count() == 0)
+            {
+                throw new EntityNotFoundException(busIdGuid);
+            }
+            return trips;
+        }
         public IEnumerable<Trip> GetTripsAccordingToFilters(string arrival, string destination, DateTime arrivalTime)
         {
             if (arrival == null && destination == null && arrivalTime == null)
@@ -56,7 +71,20 @@ namespace BusCompanyManagement.ApplicationLogic.Services
             return tripRepository.GetTrips();
         }
 
-
+        public Trip GetTripBy(string tripId)
+        {
+            Guid tripIdGuid = Guid.Empty;
+            if (!Guid.TryParse(tripId, out tripIdGuid))
+            {
+                throw new Exception("Invalid Guid Format");
+            }
+            var trip = tripRepository.GetTripBy(tripIdGuid);
+            if (trip == null)
+            {
+                throw new EntityNotFoundException(tripIdGuid);
+            }
+            return trip;
+        }
 
         public IEnumerable<Trip> GetAll()
         {
