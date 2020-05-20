@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace UnitTestProject.Services
+namespace UnitTestProject.ServiceTests
 {
     [TestClass]
     public class HistoryTripServiceTests
@@ -47,15 +47,14 @@ namespace UnitTestProject.Services
 
             historyTripRepoMock.Setup(historyTripRepo => historyTripRepo.GetPersonalTripByUserId(existingUserId))
                                                                         .Returns(historyTrip);
-            historyTripRepoMock.Setup(historyTripRepo => historyTripRepo.GetTripByPersonalTripId(historyTrip.PersonalTripId))
+            historyTripRepoMock.Setup(historyTripRepo => historyTripRepo.GetTripByPersonalTripId(existingPersonalTripId))
                                                                         .Returns(aTrip);
         }
 
         [TestMethod]
         public void GetHistoryTripByUserId_ThrowsException_WhenUserIdHasInvalidValue()
         {
-            //arrange
-            //ITeacherRepository teacherRepository, ICourseRepository
+            //arrange            
             var historyTripsService = new HistoryTripsService(tripRepoMock.Object, userRepoMock.Object, historyTripRepoMock.Object);
 
             var badUserId = "jkajsdkasj dkj daksdj as";
@@ -104,8 +103,7 @@ namespace UnitTestProject.Services
         [TestMethod]
         public void GetTripByPersonalTripId_ThrowsException_WhenPersonalTripIdHasInvalidValue()
         {
-            //arrange
-            //ITeacherRepository teacherRepository, ICourseRepository
+            //arrange            
             var historyTripsService = new HistoryTripsService(tripRepoMock.Object, userRepoMock.Object, historyTripRepoMock.Object);
 
             var badPersonalTripId = "jkajsdkasj dkj daksdj as";
