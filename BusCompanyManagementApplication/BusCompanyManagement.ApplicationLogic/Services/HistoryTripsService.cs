@@ -41,7 +41,7 @@ namespace BusCompanyManagement.ApplicationLogic.Services
                 throw new Exception("Invalid Guid Format");
             }
 
-            var personaltrip = historyTripRepository.GetHistoryTripByUserId(userIdGuid);
+            var personaltrip = historyTripRepository.GetPersonalTripByUserId(userIdGuid);
             if (personaltrip == null)
             {
                 throw new EntityNotFoundException(userIdGuid);
@@ -66,7 +66,7 @@ namespace BusCompanyManagement.ApplicationLogic.Services
             return trip;
         }
 
-        public void AddTripInHistory(string tripId, string personalTripId, string status, int ticketPrice, int seatNumber, int  rating)
+        public void AddTripInHistory(string tripId, string userId, string status, int ticketPrice, int seatNumber, int  rating)
         {
             Guid tripIdGuid = Guid.Empty;
             if (!Guid.TryParse(tripId, out tripIdGuid))
@@ -74,15 +74,14 @@ namespace BusCompanyManagement.ApplicationLogic.Services
                 throw new Exception("Invalid Guid Format");
             }
 
-            Guid personalTripIdGuid = Guid.Empty;
-            if (!Guid.TryParse(personalTripId, out personalTripIdGuid))
+            Guid userIdGuid = Guid.Empty;
+            if (!Guid.TryParse(userId, out userIdGuid))
             {
                 throw new Exception("Invalid Guid Format");
             }
 
             var trip = tripRepository.GetTripBy(tripIdGuid);
-            var user = userRepository.GetUserBy(personalTripIdGuid);
-
+            var user = userRepository.GetUserById(userIdGuid);
             if (trip == null)
             {
                 throw new EntityNotFoundException(tripIdGuid);
@@ -90,7 +89,7 @@ namespace BusCompanyManagement.ApplicationLogic.Services
 
             if (user == null)
             {
-                throw new EntityNotFoundException(personalTripIdGuid);
+                throw new EntityNotFoundException(userIdGuid);
             }
             historyTripRepository.Add(new PersonalTrip() { PersonalTripId = Guid.NewGuid(), Status = status, TicketPrice = ticketPrice, SeatNumber = seatNumber, Rating = rating, User = user, Trip = trip});
         }

@@ -3,34 +3,30 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Trip</h1>
-
-<br />
-<a href='@Url.Action("AddTrip", "SearchTrip")'>Create Trip</a>
 <link rel="stylesheet" href="~/css/Button.css">
-<p>
+<div style="text-align: center">
     @using (@Html.BeginForm("Index", "SearchTrip", FormMethod.Get))
     {
-        <b>Search trips:</b>
+        <h3>Filter trips</h3> <br />
     <p>
-        <b>Arrival: </b> @Html.TextBox("Arrival", null, new { style = "color:black" })
+        <b>Arrival&emsp;&emsp;&ensp;</b> @Html.TextBox("Arrival", null, new { style = "color:black" })
     </p>
 
     <p>
-        <b>Destination: </b> @Html.TextBox("Destination", null, new { style = "color:black" })
+        <b>Destination</b> @Html.TextBox("Destination", null, new { style = "color:black" })
     </p>
-    
+
 
     <p>
-        <label for="ArrivalTime"><b>ArrivalTime: </b></label>
+        <label for="ArrivalTime"><b>Arrival Time  </b></label>
         <input type="date" id="arrivaltime" name="arrivaltime">
     </p>
 
-    <input type="submit" value="search" />
-    <br />
-
+    <input type="submit" class="btn btn-info" value="Search" />
+    <br /><br /><br />
 }
-
+</div>
+<a href='@Url.Action("AddTrip", "SearchTrip")'>Add Trip</a> <br />
     <table class="table">
         <thead>
             <tr>
@@ -45,6 +41,10 @@
                 </th>
                 <th>
                     @Html.DisplayName("Destination")
+                </th>
+                <th>
+                </th>
+                <th>
                 </th>
             </tr>
         </thead>
@@ -79,11 +79,11 @@
                         <td>
                             <a asp-action="DeleteTrip" asp-route-id="@item.TripId">Delete</a> |
                             <a asp-action="UpdateTrip" asp-route-id="@item.TripId">Update</a> |
-                            <a asp-action="Index" asp-route-id="@item.TripId" asp-controller="Bus">Bus Info</a>
+                            <a asp-action="Index" asp-route-id="@item.TripId" asp-controller="Bus">Bus Info</a>                            
                         </td>
                         <td>
                             <a asp-action="BookSeat" asp-route-id="@item.TripId" asp-controller="SearchTrip">
-                                <input type="submit" class="btnn success" value="Book Seat" />
+                                <input type="submit" class="btn btn-info" value="Book Seat" />
                             </a>
                         </td>
                     </tr>

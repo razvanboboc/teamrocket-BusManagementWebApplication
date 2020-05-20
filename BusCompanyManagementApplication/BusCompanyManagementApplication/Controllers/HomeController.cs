@@ -23,26 +23,17 @@ namespace BusCompanyManagementApplication.Controllers
             this.announcementsService = announcementsService;
         }
 
-        //public IActionResult Index(IEnumerable<Announcement> announcements)
-        //{
-
-        //    announcements = announcementsService.GetAll();
-
-        //    if (announcements == null)
-        //    {
-        //        return View();
-        //    }
-        //    else
-        //    {
-        //        return View(new AnnouncementViewModel { Announcements = announcements });
-        //    }
-        //}
-
         public ActionResult Index()
         {
             try
             {
                 var announcements = announcementsService.GetAll();
+
+                List<Announcement> announcementsList = announcements.ToList();
+
+                announcementsList.Sort((x, y) => DateTime.Compare(y.AddedTime, x.AddedTime));
+
+                announcements = announcementsList;
 
                 return View(new AnnouncementViewModel { Announcements = announcements });
             }
@@ -51,7 +42,37 @@ namespace BusCompanyManagementApplication.Controllers
                 return BadRequest("Invalid request received");
             }
         }
-    
+        
+        [HttpGet]
+        public IActionResult ViewAnnouncement([FromRoute]Guid id)
+        {
+            var announcement = announcementsService.GetAnnouncementById(id);
+
+            return View(new ViewAnnouncementViewModel { Announcement = announcement });
+        }
+
+        [Authorize(Roles = "Administrator")]
+        [HttpGet]
+        public IActionResult AddAnnouncement()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Administrator")]
+        [HttpPost]
+        public IActionResult AddAnnouncement([FromForm]AddAnnouncementViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+
+                return BadRequest();
+            }
+
+            announcementsService.AddAnnouncement(model.Title, model.Content);
+
+            return Redirect(Url.Action("Index", "Home"));
+        }
+
         public IActionResult Privacy()
         {
             return View();

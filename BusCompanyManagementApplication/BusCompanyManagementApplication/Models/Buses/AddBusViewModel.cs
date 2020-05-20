@@ -8,7 +8,6 @@ namespace BusCompanyManagementApplication.Models.Buses
     public class AddBusViewModel
     {
         public string BusBrand { get; set; }
-        public int TotalSeats { get; set; }
-        //to put id
+        public int TotalSeats { get; set; }        
     }
 }

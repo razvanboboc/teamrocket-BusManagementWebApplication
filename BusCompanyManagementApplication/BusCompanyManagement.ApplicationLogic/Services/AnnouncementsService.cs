@@ -28,5 +28,18 @@ namespace BusCompanyManagement.ApplicationLogic.Services
             var announcements = announcementRepository.GetAll();
             return announcements;
         }
+
+        public void AddAnnouncement(string title, string content)
+        {
+            announcementRepository.Add(new Announcement()
+            {
+                AnnouncementId = Guid.NewGuid(),
+                Title = title,
+                Content = content,
+                AddedTime = DateTime.Now,       
+            });
+        }
+
+  
     }
 }
