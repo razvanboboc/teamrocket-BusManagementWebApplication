@@ -17,6 +17,8 @@ using BusCompanyManagement.ApplicationLogic.Abstractions;
 using BusCompanyManagement.ApplicationLogic.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using BusCompanyManagementApplication.Models.Users;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace BusCompanyManagementApplication
 {
@@ -32,13 +34,22 @@ namespace BusCompanyManagementApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);
+            //    services.AddAuthentication()
+            //.AddCookie(options => {
+            //    options.LoginPath = "/Account/Unauthorized/";
+            //    options.AccessDeniedPath = "/Account/Forbidden/";
+            //});
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                    .AddCookie();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            
+
             //var connection = @"Server=(localdb)\mssqllocaldb;Database=TestEntityFrameworkDb;Trusted_Connection=True;ConnectRetryCount=0";
             //services.AddDbContext<BusCompanyManagementDbContext>(options =>
             //    options.UseSqlServer(connection));
@@ -60,18 +71,25 @@ namespace BusCompanyManagementApplication
               options.UseSqlServer(
                    Configuration.GetConnectionString("DefaultConnection"))
                );
-            
-            
-            //Adding the identity role
-            services.AddIdentity<IdentityUser, IdentityRole>()
-             .AddRoleManager<RoleManager<IdentityRole>>()
-             .AddDefaultUI()
-             .AddDefaultTokenProviders()
-             .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+
+            //Adding the identity role
+            //services.AddIdentityCore<ApplicationUser>()
             //        .AddRoles<IdentityRole>()
-            //        .AddEntityFrameworkStores<ApplicationDbContext>(); 
+            //        .AddClaimsPrincipalFactory<UserClaimsPrincipalFactory<ApplicationUser, IdentityRole>>()
+            //        .AddEntityFrameworkStores<ApplicationDbContext>()
+            //        .AddDefaultTokenProviders()
+            //        .AddDefaultUI();
+
+            //services.AddIdentity<IdentityUser, IdentityRole>()
+            // .AddRoleManager<RoleManager<IdentityRole>>()
+            // .AddDefaultUI()
+            // .AddDefaultTokenProviders()
+            // .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                    .AddRoles<IdentityRole>()
+                    .AddEntityFrameworkStores<ApplicationDbContext>();
 
             //Add repo
             services.AddScoped<IHistoryTripRepository, HistoryTripRepository>();
@@ -86,18 +104,20 @@ namespace BusCompanyManagementApplication
             services.AddScoped<AnnouncementsService>();
             services.AddScoped<UsersService>();
             services.AddScoped<HistoryTripsService>();
+            services.AddTransient<IUnitOfWork,UnitOfWork>();
 
-            //services.AddControllersWithViews();
-            //services.AddRazorPages();
+            services.AddControllersWithViews();
+            services.AddRazorPages();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
 
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<IdentityUser> userManager)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<ApplicationUser> userManager)
         {
             if (env.IsDevelopment())
             {

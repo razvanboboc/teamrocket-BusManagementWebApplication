@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using BusCompanyManagementApplication.Models.Users;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +9,11 @@ namespace BusCompanyManagementApplication.Data
 {
     public static class DbSeeder
     {
-        public static void SeedDb(UserManager<IdentityUser> userManager)
+        public static void SeedDb(UserManager<ApplicationUser> userManager)
         {
             if (!userManager.Users.Any(u => u.UserName == "user@gmail.com"))
             {
-                IdentityUser user = new IdentityUser
+                ApplicationUser user = new ApplicationUser
                 {
                     UserName = "user@gmail.com",
                     Email = "user@gmail.com"
@@ -23,7 +24,7 @@ namespace BusCompanyManagementApplication.Data
 
             if (!userManager.Users.Any(u => u.UserName == "admin1@gmail.com"))
             {
-                IdentityUser admin = new IdentityUser
+                ApplicationUser admin = new ApplicationUser
                 {
                     UserName = "admin1@gmail.com",
                     Email = "admin1@gmail.com"
@@ -34,7 +35,7 @@ namespace BusCompanyManagementApplication.Data
 
             if (!userManager.Users.Any(u => u.UserName == "admin2@gmail.com"))
             {
-                IdentityUser admin2 = new IdentityUser
+                ApplicationUser admin2 = new ApplicationUser
                 {
                     UserName = "admin2@gmail.com",
                     Email = "admin2@gmail.com"
